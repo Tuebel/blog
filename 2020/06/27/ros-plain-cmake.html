@@ -1,0 +1,65 @@
+<h1 id="ros-plain-cmake-project">ROS Plain CMake project</h1>
+<p>Table of contents:</p>
+<ol id="markdown-toc">
+  <li><a href="#ros-plain-cmake-project" id="markdown-toc-ros-plain-cmake-project">ROS Plain CMake project</a>    <ol>
+      <li><a href="#why-plain-cmake" id="markdown-toc-why-plain-cmake">Why Plain CMake?</a></li>
+      <li><a href="#packagexml" id="markdown-toc-packagexml">package.xml</a></li>
+      <li><a href="#cmake-packages--make-it-find_package-able" id="markdown-toc-cmake-packages--make-it-find_package-able">CMake Packages / Make it <code class="highlighter-rouge">find_package</code>’ able</a></li>
+      <li><a href="#building-the-project" id="markdown-toc-building-the-project">Building the Project</a></li>
+      <li><a href="#references" id="markdown-toc-references">References</a></li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="why-plain-cmake">Why Plain CMake?</h2>
+<p>There is one big reason to use a plain CMake package instead of a catkin: <strong>flexibility</strong>.
+Using catkin specific commands in your <code class="highlighter-rouge">CMakeLists.txt</code> prohibits to compile the package using good old CMake.
+Thus, colleagues or the community might not be able to use your awesome package.
+However, I would recommend to only us plain CMake for a core library which does not have any ROS dependencies:</p>
+
+<ul>
+  <li>Catkin takes away a lot of the pain involved with enabling <code class="highlighter-rouge">find_package</code> for a CMake package.</li>
+  <li>Plain CMake packages cannot be compiled via <code class="highlighter-rouge">catkin_make</code> <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.</li>
+  <li>Having ROS dependencies requires catkin anyways.</li>
+</ul>
+
+<h2 id="packagexml">package.xml</h2>
+<p>As any other ROS package, a <code class="highlighter-rouge">package.xml</code> is required.
+This file gets parsed by the build tool to determine the dependencies and the build order.
+To mark your project as plain CMake add the following tags to your <code class="highlighter-rouge">package.xml</code>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;buildtool_depend&gt;</span>cmake<span class="nt">&lt;/buildtool_depend&gt;</span>
+
+<span class="nt">&lt;exports&gt;</span>
+  <span class="nt">&lt;build_type&gt;</span>cmake<span class="nt">&lt;/build_type&gt;</span>
+<span class="nt">&lt;/exports&gt;</span>
+</code></pre></div></div>
+
+<p>Many dependencies can be installed via <code class="highlighter-rouge">rosdep</code><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> so they should be added, too.
+Make sure to visit <a href="http://rosindex.github.io/">rosindex</a> to find the correct name of the dependencies.
+For example for OpenGL based rendering one might include:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;depend&gt;</span>glut<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;depend&gt;</span>opengl<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;depend&gt;</span>libglfw3-dev<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;depend&gt;</span>assimp<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;depend&gt;</span>libglm-dev<span class="nt">&lt;/depend&gt;</span>
+</code></pre></div></div>
+
+<h2 id="cmake-packages--make-it-find_package-able">CMake Packages / Make it <code class="highlighter-rouge">find_package</code>’ able</h2>
+<ul>
+  <li>Build in source tree</li>
+  <li>Build out of source tree</li>
+</ul>
+
+<h2 id="building-the-project">Building the Project</h2>
+
+<h2 id="references">References</h2>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>[https://www.ros.org/reps/rep-0134.html] <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>[http://wiki.ros.org/rosdep] <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
