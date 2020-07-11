@@ -1,4 +1,9 @@
 # ROS Plain CMake project
+Even though it is considered best practice to seperate the ROS code from the algorithms / program logic, they are commonly placed in the same ROS package.
+To increase the reusability accross different projects, which might not be ROS related, the catkin bits have to be removed from the CMake files.
+However, this requires the programmer to add the magic that catkin would do for you manually.
+This blog post is meant to provide some insight on what is required to make a CMake project 'packagable' and how to include it in a ROS workspace.
+
 Table of contents:
 1. TOC
 {:toc}
