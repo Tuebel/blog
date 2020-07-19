@@ -1,22 +1,24 @@
-# ROS Plain CMake project
-Even though it is considered best practice to seperate the ROS code from the algorithms / program logic, they are commonly placed in the same ROS package.
-To increase the reusability accross different projects, which might not be ROS related, the catkin bits have to be removed from the CMake files.
-However, this requires the programmer to add the magic that catkin would do for you manually.
-This blog post is meant to provide some insight on what is required to make a CMake project 'packagable' and how to include it in a ROS workspace.
+---
+title: "ROS Plain CMake"
+description: "Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS."
+layout: post
+toc: true
+comments: true
+# image: https://commons.wikimedia.org/wiki/File:Cmake.svg
+hide: false
+search_exclude: true
+categories: [ROS, CMake]
+---
 
-Table of contents:
-1. TOC
-{:toc}
-
-## Why Plain CMake?
-There is one big reason to use a plain CMake package instead of a catkin: **flexibility**.
-Using catkin specific commands in your `CMakeLists.txt` prohibits to compile the package using good old CMake.
-Thus, colleagues or the community might not be able to use your awesome package.
-However, I would recommend to only us plain CMake for a core library which does not have any ROS dependencies:
-
-- Catkin takes away a lot of the pain involved with enabling `find_package` for a CMake package.
-- Plain CMake packages cannot be compiled via `catkin_make` [^1].
-- Having ROS dependencies requires catkin anyways.
+# Motivation
+Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
+To increase the reusability, the logic should be placed in a different package which does not rely on the ROS bits.
+This enables the community or colleagues to use the code in non-ROS projects.
+However, this requires the programmer to manually add the packaging magic that catkin would do.
+This blog post is meant to provide some insight on what is required to make a CMake project 'find_packagable' to enable:
+- `find_package` in a ROS workspace
+- `find_package` as a system dependency
+- importing targets and forwarding their dependencies
 
 ## package.xml
 As any other ROS package, a `package.xml` is required.
@@ -50,3 +52,9 @@ For example for OpenGL based rendering one might include:
 ## References
 [^1]: [https://www.ros.org/reps/rep-0134.html]
 [^2]: [http://wiki.ros.org/rosdep]
+
+
+
+# TODO
+- Plain CMake packages cannot be compiled via `catkin_make` [^1].
+- Having ROS dependencies requires catkin anyways.
