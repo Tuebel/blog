@@ -107,7 +107,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -127,10 +127,15 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#motivation">Motivation</a>
+<li class="toc-entry toc-h1"><a href="#motivation">Motivation</a></li>
+<li class="toc-entry toc-h1"><a href="#example-repository">Example repository</a></li>
+<li class="toc-entry toc-h1"><a href="#packagexml">package.xml</a></li>
+<li class="toc-entry toc-h1"><a href="#cmakeliststxt">CMakeLists.txt</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#packagexml">package.xml</a></li>
-<li class="toc-entry toc-h2"><a href="#cmake-packages--make-it-find_package-able">CMake Packages / Make it find_package’ able</a></li>
+<li class="toc-entry toc-h2"><a href="#basic-configuration">Basic configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#defining-targets">Defining targets</a></li>
+<li class="toc-entry toc-h2"><a href="#config-generation">Config generation</a></li>
+<li class="toc-entry toc-h2"><a href="#installation">Installation</a></li>
 <li class="toc-entry toc-h2"><a href="#building-the-project">Building the Project</a></li>
 <li class="toc-entry toc-h2"><a href="#references">References</a></li>
 </ul>
@@ -151,30 +156,79 @@ This blog post is meant to provide some insight on what is required to make a CM
   <li>importing targets and forwarding their dependencies</li>
 </ul>
 
-<h2 id="packagexml">
-<a class="anchor" href="#packagexml" aria-hidden="true"><span class="octicon octicon-link"></span></a>package.xml</h2>
-<p>As any other ROS package, a <code class="highlighter-rouge">package.xml</code> is required.
+<h1 id="example-repository">
+<a class="anchor" href="#example-repository" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example repository</h1>
+<p>A minimal working example of a ROS workspace can be found <a href="https://github.com/Tuebel/ros_plain_cmake">here</a>.
+This workspace contrains three packages:</p>
+<ol>
+  <li>
+<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/catkin_pkg">catkin_pkg</a>: test the plain_cmake package in a ROS workspace</li>
+  <li>
+<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/consumer_cmake">consumer_cmake</a>: test the system installation of plain_cmake in another CMake project</li>
+  <li>
+<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/plain_cmake">plain_cmake</a>: minimal example of a plain CMake package for ROS
+This blog post will fokus on the plain_cmake package.</li>
+</ol>
+
+<p>Importing the package into another CMake or catkin package is straight forward and tutorials can be found in the <a href="http://wiki.ros.org/catkin/Tutorials/CreatingPackage">ROS wiki</a>.</p>
+
+<h1 id="packagexml">
+<a class="anchor" href="#packagexml" aria-hidden="true"><span class="octicon octicon-link"></span></a>package.xml</h1>
+<p>Even though a <code class="highlighter-rouge">package.xml</code> is not required for the CMake functionalities, it is still required in the context of ROS.
 This file gets parsed by the build tool to determine the dependencies and the build order.
-To mark your project as plain CMake add the following tags to your <code class="highlighter-rouge">package.xml</code>:</p>
+To mark our project as plain CMake we add the following tags to our <code class="highlighter-rouge">package.xml</code>:</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;buildtool_depend&gt;</span>cmake<span class="nt">&lt;/buildtool_depend&gt;</span>
 
 <span class="nt">&lt;exports&gt;</span>
   <span class="nt">&lt;build_type&gt;</span>cmake<span class="nt">&lt;/build_type&gt;</span>
 <span class="nt">&lt;/exports&gt;</span>
 </code></pre></div></div>
-
-<p>Many dependencies can be installed via <code class="highlighter-rouge">rosdep</code><sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup> so they should be added, too.
+<p>Many dependencies can be installed via <a href="http://wiki.ros.org/rosdep">rosdep</a> so they should be added, too.
 Make sure to visit <a href="http://rosindex.github.io/">rosindex</a> to find the correct name of the dependencies.
-For example for OpenGL based rendering one might include:</p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;depend&gt;</span>glut<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>opengl<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>libglfw3-dev<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>assimp<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>libglm-dev<span class="nt">&lt;/depend&gt;</span>
+For example for linear algebra, matrix and vector operations the package could depend on <a href="http://eigen.tuxfamily.org/">Eigen</a>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;depend&gt;</span>eigen<span class="nt">&lt;/depend&gt;</span>
 </code></pre></div></div>
 
-<h2 id="cmake-packages--make-it-find_package-able">
-<a class="anchor" href="#cmake-packages--make-it-find_package-able" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMake Packages / Make it <code class="highlighter-rouge">find_package</code>’ able</h2>
+<h1 id="cmakeliststxt">
+<a class="anchor" href="#cmakeliststxt" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMakeLists.txt</h1>
+<h2 id="basic-configuration">
+<a class="anchor" href="#basic-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic configuration</h2>
+<p>First, some basic configuration variables are set for the package.
+We will use some modern features which require CMake version 3.0 or higher.
+Moreover, we define a name and version for the package.</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>plain_cmake<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>PLAIN_CMAKE_VERSION 0.1<span class="p">)</span>
+</code></pre></div></div>
+<p>Now we include some CMake helpers which provide default installation locations and helpers to generate the CMake configuration.</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">include</span><span class="p">(</span>GNUInstallDirs<span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span>CMakePackageConfigHelpers<span class="p">)</span>
+</code></pre></div></div>
+<p>Finally, we need to include the dependencies of our package.
+In this example, the Eigen3 library is required.</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span> <span class="p">(</span>Eigen3 3.3 REQUIRED NO_MODULE<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="defining-targets">
+<a class="anchor" href="#defining-targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining targets</h2>
+<p>This step is very similar to defining targets in a catkin package.
+In this example, we define a library named after project which consists of a single source file.
+The only difference …</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_library</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib src/matrix_operations.cpp<span class="p">)</span>
+<span class="c1"># different locations on build and after install</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PUBLIC
+  $&lt;BUILD_INTERFACE:<span class="si">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="si">}</span>/include&gt;
+  $&lt;INSTALL_INTERFACE:include&gt;<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PUBLIC Eigen3::Eigen<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="config-generation">
+<a class="anchor" href="#config-generation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config generation</h2>
+<p>Both, the <code class="highlighter-rouge">plain_cmakeConfigVersion.cmake</code> and the <code class="highlighter-rouge">plain_cmakeConfig.cmake</code> are required for the <code class="highlighter-rouge">find_package</code> functionality.</p>
+
+<h2 id="installation">
+<a class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 <ul>
   <li>Build in source tree</li>
   <li>Build out of source tree</li>
@@ -189,14 +243,13 @@ For example for OpenGL based rendering one might include:</p>
 <h1 id="todo">
 <a class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
 <ul>
-  <li>Plain CMake packages cannot be compiled via <code class="highlighter-rouge">catkin_make</code> <sup id="fnref:1"><a href="#fn:1" class="footnote">2</a></sup>.</li>
+  <li>Plain CMake packages cannot be compiled via <code class="highlighter-rouge">catkin_make</code> <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.</li>
   <li>Having ROS dependencies requires catkin anyways.</li>
+  <li>Use inclusive “we”</li>
+  <li>
 </ul>
 <div class="footnotes">
   <ol>
-    <li id="fn:2">
-      <p>[http://wiki.ros.org/rosdep] <a href="#fnref:2" class="reversefootnote">↩</a></p>
-    </li>
     <li id="fn:1">
       <p>[https://www.ros.org/reps/rep-0134.html] <a href="#fnref:1" class="reversefootnote">↩</a></p>
     </li>

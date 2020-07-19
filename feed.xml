@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://tuebel.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://tuebel.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-07-19T12:46:22-05:00</updated><id>https://tuebel.github.io/blog/feed.xml</id><title type="html">🤖 Tim Übelhörs blog</title><subtitle>Hacks, tricks and awesomeness for robots and you. GoROS!</subtitle><entry><title type="html">ROS Plain CMake</title><link href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" rel="alternate" type="text/html" title="ROS Plain CMake" /><published>2020-06-27T00:00:00-05:00</published><updated>2020-06-27T00:00:00-05:00</updated><id>https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake</id><content type="html" xml:base="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html">&lt;h1 id=&quot;motivation&quot;&gt;Motivation&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://tuebel.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://tuebel.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-07-19T15:32:51-05:00</updated><id>https://tuebel.github.io/blog/feed.xml</id><title type="html">🤖 Tim Übelhörs blog</title><subtitle>Hacks, tricks and awesomeness for robots and you. GoROS!</subtitle><entry><title type="html">ROS Plain CMake</title><link href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" rel="alternate" type="text/html" title="ROS Plain CMake" /><published>2020-06-27T00:00:00-05:00</published><updated>2020-06-27T00:00:00-05:00</updated><id>https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake</id><content type="html" xml:base="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html">&lt;h1 id=&quot;motivation&quot;&gt;Motivation&lt;/h1&gt;
 &lt;p&gt;Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
 To increase the reusability, the logic should be placed in a different package which does not rely on the ROS bits.
 This enables the community or colleagues to use the code in non-ROS projects.
@@ -10,28 +10,69 @@ This blog post is meant to provide some insight on what is required to make a CM
   &lt;li&gt;importing targets and forwarding their dependencies&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;packagexml&quot;&gt;package.xml&lt;/h2&gt;
-&lt;p&gt;As any other ROS package, a &lt;code class=&quot;highlighter-rouge&quot;&gt;package.xml&lt;/code&gt; is required.
+&lt;h1 id=&quot;example-repository&quot;&gt;Example repository&lt;/h1&gt;
+&lt;p&gt;A minimal working example of a ROS workspace can be found &lt;a href=&quot;https://github.com/Tuebel/ros_plain_cmake&quot;&gt;here&lt;/a&gt;.
+This workspace contrains three packages:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Tuebel/ros_plain_cmake/tree/master/src/catkin_pkg&quot;&gt;catkin_pkg&lt;/a&gt;: test the plain_cmake package in a ROS workspace&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Tuebel/ros_plain_cmake/tree/master/src/consumer_cmake&quot;&gt;consumer_cmake&lt;/a&gt;: test the system installation of plain_cmake in another CMake project&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Tuebel/ros_plain_cmake/tree/master/src/plain_cmake&quot;&gt;plain_cmake&lt;/a&gt;: minimal example of a plain CMake package for ROS
+This blog post will fokus on the plain_cmake package.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Importing the package into another CMake or catkin package is straight forward and tutorials can be found in the &lt;a href=&quot;http://wiki.ros.org/catkin/Tutorials/CreatingPackage&quot;&gt;ROS wiki&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;packagexml&quot;&gt;package.xml&lt;/h1&gt;
+&lt;p&gt;Even though a &lt;code class=&quot;highlighter-rouge&quot;&gt;package.xml&lt;/code&gt; is not required for the CMake functionalities, it is still required in the context of ROS.
 This file gets parsed by the build tool to determine the dependencies and the build order.
-To mark your project as plain CMake add the following tags to your &lt;code class=&quot;highlighter-rouge&quot;&gt;package.xml&lt;/code&gt;:&lt;/p&gt;
+To mark our project as plain CMake we add the following tags to our &lt;code class=&quot;highlighter-rouge&quot;&gt;package.xml&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;buildtool_depend&amp;gt;&lt;/span&gt;cmake&lt;span class=&quot;nt&quot;&gt;&amp;lt;/buildtool_depend&amp;gt;&lt;/span&gt;
 
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;exports&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;build_type&amp;gt;&lt;/span&gt;cmake&lt;span class=&quot;nt&quot;&gt;&amp;lt;/build_type&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/exports&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Many dependencies can be installed via &lt;code class=&quot;highlighter-rouge&quot;&gt;rosdep&lt;/code&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; so they should be added, too.
+&lt;p&gt;Many dependencies can be installed via &lt;a href=&quot;http://wiki.ros.org/rosdep&quot;&gt;rosdep&lt;/a&gt; so they should be added, too.
 Make sure to visit &lt;a href=&quot;http://rosindex.github.io/&quot;&gt;rosindex&lt;/a&gt; to find the correct name of the dependencies.
-For example for OpenGL based rendering one might include:&lt;/p&gt;
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;depend&amp;gt;&lt;/span&gt;glut&lt;span class=&quot;nt&quot;&gt;&amp;lt;/depend&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;depend&amp;gt;&lt;/span&gt;opengl&lt;span class=&quot;nt&quot;&gt;&amp;lt;/depend&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;depend&amp;gt;&lt;/span&gt;libglfw3-dev&lt;span class=&quot;nt&quot;&gt;&amp;lt;/depend&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;depend&amp;gt;&lt;/span&gt;assimp&lt;span class=&quot;nt&quot;&gt;&amp;lt;/depend&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;depend&amp;gt;&lt;/span&gt;libglm-dev&lt;span class=&quot;nt&quot;&gt;&amp;lt;/depend&amp;gt;&lt;/span&gt;
+For example for linear algebra, matrix and vector operations the package could depend on &lt;a href=&quot;http://eigen.tuxfamily.org/&quot;&gt;Eigen&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;depend&amp;gt;&lt;/span&gt;eigen&lt;span class=&quot;nt&quot;&gt;&amp;lt;/depend&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;cmake-packages--make-it-find_package-able&quot;&gt;CMake Packages / Make it &lt;code class=&quot;highlighter-rouge&quot;&gt;find_package&lt;/code&gt;’ able&lt;/h2&gt;
+&lt;h1 id=&quot;cmakeliststxt&quot;&gt;CMakeLists.txt&lt;/h1&gt;
+&lt;h2 id=&quot;basic-configuration&quot;&gt;Basic configuration&lt;/h2&gt;
+&lt;p&gt;First, some basic configuration variables are set for the package.
+We will use some modern features which require CMake version 3.0 or higher.
+Moreover, we define a name and version for the package.&lt;/p&gt;
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cmake_minimum_required&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;VERSION 3.0&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;plain_cmake&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;PLAIN_CMAKE_VERSION 0.1&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Now we include some CMake helpers which provide default installation locations and helpers to generate the CMake configuration.&lt;/p&gt;
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;GNUInstallDirs&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;CMakePackageConfigHelpers&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Finally, we need to include the dependencies of our package.
+In this example, the Eigen3 library is required.&lt;/p&gt;
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;find_package&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;Eigen3 3.3 REQUIRED NO_MODULE&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;defining-targets&quot;&gt;Defining targets&lt;/h2&gt;
+&lt;p&gt;This step is very similar to defining targets in a catkin package.
+In this example, we define a library named after project which consists of a single source file.
+The only difference …&lt;/p&gt;
+
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;add_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib src/matrix_operations.cpp&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# different locations on build and after install&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;target_include_directories&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib PUBLIC
+  $&amp;lt;BUILD_INTERFACE:&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_CURRENT_SOURCE_DIR&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;/include&amp;gt;
+  $&amp;lt;INSTALL_INTERFACE:include&amp;gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;target_link_libraries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib PUBLIC Eigen3::Eigen&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;config-generation&quot;&gt;Config generation&lt;/h2&gt;
+&lt;p&gt;Both, the &lt;code class=&quot;highlighter-rouge&quot;&gt;plain_cmakeConfigVersion.cmake&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;plain_cmakeConfig.cmake&lt;/code&gt; are required for the &lt;code class=&quot;highlighter-rouge&quot;&gt;find_package&lt;/code&gt; functionality.&lt;/p&gt;
+
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Build in source tree&lt;/li&gt;
   &lt;li&gt;Build out of source tree&lt;/li&gt;
@@ -43,14 +84,13 @@ For example for OpenGL based rendering one might include:&lt;/p&gt;
 
 &lt;h1 id=&quot;todo&quot;&gt;TODO&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;Plain CMake packages cannot be compiled via &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin_make&lt;/code&gt; &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
+  &lt;li&gt;Plain CMake packages cannot be compiled via &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin_make&lt;/code&gt; &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
   &lt;li&gt;Having ROS dependencies requires catkin anyways.&lt;/li&gt;
+  &lt;li&gt;Use inclusive “we”&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;[http://wiki.ros.org/rosdep] &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
     &lt;li id=&quot;fn:1&quot;&gt;
       &lt;p&gt;[https://www.ros.org/reps/rep-0134.html] &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
