@@ -1,5 +1,5 @@
 ---
-title: "ROS Plain CMake"
+title: "(WIP) ROS Plain CMake"
 description: "Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS."
 layout: post
 toc: true
