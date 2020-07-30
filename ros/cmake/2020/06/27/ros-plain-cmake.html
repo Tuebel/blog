@@ -107,7 +107,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -132,8 +132,9 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#packagexml">package.xml</a></li>
 <li class="toc-entry toc-h1"><a href="#cmakeliststxt">CMakeLists.txt</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#basic-configuration">Basic configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#includes-and-settings">Includes and settings</a></li>
 <li class="toc-entry toc-h2"><a href="#defining-targets">Defining targets</a></li>
+<li class="toc-entry toc-h2"><a href="#installing-the-targets">Installing the targets</a></li>
 <li class="toc-entry toc-h2"><a href="#config-generation">Config generation</a></li>
 <li class="toc-entry toc-h2"><a href="#installation">Installation</a></li>
 <li class="toc-entry toc-h2"><a href="#building-the-project">Building the Project</a></li>
@@ -144,7 +145,7 @@ window.onload = wrap_img;
 </ul><h1 id="motivation">
 <a class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h1>
 <p>Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
-To increase the reusability, the logic should be placed in a different package which does not rely on the ROS bits.
+To increase the reusability, the logic / algorithms should be placed in a different package which does not rely on the ROS bits.
 This enables the community or colleagues to use the code in non-ROS projects.
 However, this requires the programmer to manually add the packaging magic that catkin would do.
 This blog post is meant to provide some insight on what is required to make a CMake project ‘find_packagable’ to enable:</p>
@@ -191,19 +192,28 @@ For example for linear algebra, matrix and vector operations the package could d
 
 <h1 id="cmakeliststxt">
 <a class="anchor" href="#cmakeliststxt" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMakeLists.txt</h1>
-<h2 id="basic-configuration">
-<a class="anchor" href="#basic-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic configuration</h2>
-<p>First, some basic configuration variables are set for the package.
-We will use some modern features which require CMake version 3.0 or higher.
-Moreover, we define a name and version for the package.</p>
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0<span class="p">)</span>
-<span class="nb">project</span><span class="p">(</span>plain_cmake<span class="p">)</span>
-<span class="nb">set</span><span class="p">(</span>PLAIN_CMAKE_VERSION 0.1<span class="p">)</span>
-</code></pre></div></div>
-<p>Now we include some CMake helpers which provide default installation locations and helpers to generate the CMake configuration.</p>
+<h2 id="includes-and-settings">
+<a class="anchor" href="#includes-and-settings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Includes and settings</h2>
+<p>First, we include some CMake helpers.
+The former provides variables for default installation directories like <code class="highlighter-rouge">${CMAKE_INSTALL_LIBDIR}</code> while the former provides functions for the automatic generation of the CMake configuration files.
+These files are mandatory for a CMake package to provide the <code class="highlighter-rouge">find_package</code> functionality.</p>
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">include</span><span class="p">(</span>GNUInstallDirs<span class="p">)</span>
 <span class="nb">include</span><span class="p">(</span>CMakePackageConfigHelpers<span class="p">)</span>
 </code></pre></div></div>
+
+<p>Afterwards, some variables are set to configure this package package.
+We will use some modern features which require CMake version 3.1 or higher.
+Then, we define a name and version for the package and set the C++ standard to version 11.
+In the last line, we define the variable <code class="highlighter-rouge">ConfigPackageLocation</code> which contains the path where our CMake package configuration files will be installed.
+Under Linux CMake will search in several locations for the Config.cmake file.
+One of the locations is <code class="highlighter-rouge">lib/&lt;package name&gt;/</code> and we append <code class="highlighter-rouge">/cmake</code> to keep our installation directory clean.</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.1<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>plain_cmake<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>PLAIN_CMAKE_VERSION 0.1<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>CMAKE_CXX_STANDARD 11<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>ConfigPackageLocation <span class="si">${</span><span class="nv">CMAKE_INSTALL_LIBDIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>/cmake<span class="p">)</span>
+</code></pre></div></div>
+
 <p>Finally, we need to include the dependencies of our package.
 In this example, the Eigen3 library is required.</p>
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span> <span class="p">(</span>Eigen3 3.3 REQUIRED NO_MODULE<span class="p">)</span>
@@ -213,15 +223,25 @@ In this example, the Eigen3 library is required.</p>
 <a class="anchor" href="#defining-targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining targets</h2>
 <p>This step is very similar to defining targets in a catkin package.
 In this example, we define a library named after project which consists of a single source file.
-The only difference …</p>
-
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_library</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib src/matrix_operations.cpp<span class="p">)</span>
-<span class="c1"># different locations on build and after install</span>
+Instead of 
+However, as the <a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html">CMake documentation</a> states: “Include directories usage requirements commonly differ between the build-tree and the install-tree.”</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_library</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib<span class="p">)</span>
+<span class="nf">target_sources</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PRIVATE
+  src/matrix_operations.cpp<span class="p">)</span>
 <span class="nb">target_include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PUBLIC
   $&lt;BUILD_INTERFACE:<span class="si">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="si">}</span>/include&gt;
   $&lt;INSTALL_INTERFACE:include&gt;<span class="p">)</span>
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PUBLIC Eigen3::Eigen<span class="p">)</span>
 </code></pre></div></div>
+<p>Moreover, we we define an application to showcase the installation and export of the targets later.
+Since we defined the library earlier, this application only needs to be linked to this very library.</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_executable</span><span class="p">(</span>example_app src/example_app.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>example_app <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="installing-the-targets">
+<a class="anchor" href="#installing-the-targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing the targets</h2>
+<p>In this step the</p>
 
 <h2 id="config-generation">
 <a class="anchor" href="#config-generation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config generation</h2>

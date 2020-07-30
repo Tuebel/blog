@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://tuebel.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://tuebel.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-07-22T00:56:51-05:00</updated><id>https://tuebel.github.io/blog/feed.xml</id><title type="html">🤖 Tim Übelhörs blog</title><subtitle>Hacks, tricks and awesomeness for robots and you. GoROS!</subtitle><entry><title type="html">(WIP) ROS Plain CMake</title><link href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" rel="alternate" type="text/html" title="(WIP) ROS Plain CMake" /><published>2020-06-27T00:00:00-05:00</published><updated>2020-06-27T00:00:00-05:00</updated><id>https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake</id><content type="html" xml:base="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html">&lt;h1 id=&quot;motivation&quot;&gt;Motivation&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://tuebel.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://tuebel.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-07-30T07:25:24-05:00</updated><id>https://tuebel.github.io/blog/feed.xml</id><title type="html">🤖 Tim Übelhörs blog</title><subtitle>Hacks, tricks and awesomeness for robots and you. GoROS!</subtitle><entry><title type="html">(WIP) ROS Plain CMake</title><link href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" rel="alternate" type="text/html" title="(WIP) ROS Plain CMake" /><published>2020-06-27T00:00:00-05:00</published><updated>2020-06-27T00:00:00-05:00</updated><id>https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake</id><content type="html" xml:base="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html">&lt;h1 id=&quot;motivation&quot;&gt;Motivation&lt;/h1&gt;
 &lt;p&gt;Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
-To increase the reusability, the logic should be placed in a different package which does not rely on the ROS bits.
+To increase the reusability, the logic / algorithms should be placed in a different package which does not rely on the ROS bits.
 This enables the community or colleagues to use the code in non-ROS projects.
 However, this requires the programmer to manually add the packaging magic that catkin would do.
 This blog post is meant to provide some insight on what is required to make a CMake project ‘find_packagable’ to enable:&lt;/p&gt;
@@ -39,18 +39,27 @@ For example for linear algebra, matrix and vector operations the package could d
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;cmakeliststxt&quot;&gt;CMakeLists.txt&lt;/h1&gt;
-&lt;h2 id=&quot;basic-configuration&quot;&gt;Basic configuration&lt;/h2&gt;
-&lt;p&gt;First, some basic configuration variables are set for the package.
-We will use some modern features which require CMake version 3.0 or higher.
-Moreover, we define a name and version for the package.&lt;/p&gt;
-&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cmake_minimum_required&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;VERSION 3.0&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;plain_cmake&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;PLAIN_CMAKE_VERSION 0.1&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Now we include some CMake helpers which provide default installation locations and helpers to generate the CMake configuration.&lt;/p&gt;
+&lt;h2 id=&quot;includes-and-settings&quot;&gt;Includes and settings&lt;/h2&gt;
+&lt;p&gt;First, we include some CMake helpers.
+The former provides variables for default installation directories like &lt;code class=&quot;highlighter-rouge&quot;&gt;${CMAKE_INSTALL_LIBDIR}&lt;/code&gt; while the former provides functions for the automatic generation of the CMake configuration files.
+These files are mandatory for a CMake package to provide the &lt;code class=&quot;highlighter-rouge&quot;&gt;find_package&lt;/code&gt; functionality.&lt;/p&gt;
 &lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;GNUInstallDirs&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;CMakePackageConfigHelpers&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Afterwards, some variables are set to configure this package package.
+We will use some modern features which require CMake version 3.1 or higher.
+Then, we define a name and version for the package and set the C++ standard to version 11.
+In the last line, we define the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;ConfigPackageLocation&lt;/code&gt; which contains the path where our CMake package configuration files will be installed.
+Under Linux CMake will search in several locations for the Config.cmake file.
+One of the locations is &lt;code class=&quot;highlighter-rouge&quot;&gt;lib/&amp;lt;package name&amp;gt;/&lt;/code&gt; and we append &lt;code class=&quot;highlighter-rouge&quot;&gt;/cmake&lt;/code&gt; to keep our installation directory clean.&lt;/p&gt;
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cmake_minimum_required&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;VERSION 3.1&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;plain_cmake&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;PLAIN_CMAKE_VERSION 0.1&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;CMAKE_CXX_STANDARD 11&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;ConfigPackageLocation &lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_INSTALL_LIBDIR&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;/&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;/cmake&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;Finally, we need to include the dependencies of our package.
 In this example, the Eigen3 library is required.&lt;/p&gt;
 &lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;find_package&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;Eigen3 3.3 REQUIRED NO_MODULE&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -59,15 +68,24 @@ In this example, the Eigen3 library is required.&lt;/p&gt;
 &lt;h2 id=&quot;defining-targets&quot;&gt;Defining targets&lt;/h2&gt;
 &lt;p&gt;This step is very similar to defining targets in a catkin package.
 In this example, we define a library named after project which consists of a single source file.
-The only difference …&lt;/p&gt;
-
-&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;add_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib src/matrix_operations.cpp&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# different locations on build and after install&lt;/span&gt;
+Instead of 
+However, as the &lt;a href=&quot;https://cmake.org/cmake/help/latest/command/target_include_directories.html&quot;&gt;CMake documentation&lt;/a&gt; states: “Include directories usage requirements commonly differ between the build-tree and the install-tree.”&lt;/p&gt;
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;add_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;target_sources&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib PRIVATE
+  src/matrix_operations.cpp&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;target_include_directories&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib PUBLIC
   $&amp;lt;BUILD_INTERFACE:&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_CURRENT_SOURCE_DIR&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;/include&amp;gt;
   $&amp;lt;INSTALL_INTERFACE:include&amp;gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;target_link_libraries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib PUBLIC Eigen3::Eigen&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Moreover, we we define an application to showcase the installation and export of the targets later.
+Since we defined the library earlier, this application only needs to be linked to this very library.&lt;/p&gt;
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;add_executable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;example_app src/example_app.cpp&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;target_link_libraries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;example_app &lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_PROJECT_NAME&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;_lib&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;installing-the-targets&quot;&gt;Installing the targets&lt;/h2&gt;
+&lt;p&gt;In this step the&lt;/p&gt;
 
 &lt;h2 id=&quot;config-generation&quot;&gt;Config generation&lt;/h2&gt;
 &lt;p&gt;Both, the &lt;code class=&quot;highlighter-rouge&quot;&gt;plain_cmakeConfigVersion.cmake&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;plain_cmakeConfig.cmake&lt;/code&gt; are required for the &lt;code class=&quot;highlighter-rouge&quot;&gt;find_package&lt;/code&gt; functionality.&lt;/p&gt;
@@ -95,4 +113,4 @@ The only difference …&lt;/p&gt;
       &lt;p&gt;[https://www.ros.org/reps/rep-0134.html] &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Motivation Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package. To increase the reusability, the logic should be placed in a different package which does not rely on the ROS bits. This enables the community or colleagues to use the code in non-ROS projects. However, this requires the programmer to manually add the packaging magic that catkin would do. This blog post is meant to provide some insight on what is required to make a CMake project ‘find_packagable’ to enable: find_package in a ROS workspace find_package as a system dependency importing targets and forwarding their dependencies</summary></entry></feed>
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Motivation Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package. To increase the reusability, the logic / algorithms should be placed in a different package which does not rely on the ROS bits. This enables the community or colleagues to use the code in non-ROS projects. However, this requires the programmer to manually add the packaging magic that catkin would do. This blog post is meant to provide some insight on what is required to make a CMake project ‘find_packagable’ to enable: find_package in a ROS workspace find_package as a system dependency importing targets and forwarding their dependencies</summary></entry></feed>
