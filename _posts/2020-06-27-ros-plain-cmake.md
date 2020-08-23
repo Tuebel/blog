@@ -295,18 +295,40 @@ target_link_libraries(test_node
 Finally, we can compile the whole catkin workspace.
 As the plain CMake package makes it a mixed workspace, we cannot use `catkin_make`.
 Instead, `catkin_make_isolated` or `catkin build` from the catkin_tools has to be used.
+An example of the above can be found in *catkin_pkg* directory of the [example repository](https://github.com/Tuebel/ros_plain_cmake).
 
 ## CMake System Installation
+Since the `plain_cmake` package's only catkin bit is the *package.xml*, it can be installed and used like any other system dependency.
+Navigate to the *plain_cmake* directory and create a *build* directory to keep the workspace clean.
+Inside this directory we can call the typical sequence of commands to build and install a CMake package.
+For development, I prefer using `checkinstall` instead of `make install` because it enables an easy cleanup via your favorite package manager, for example `apt-get`.
 
+```cmake
+cd path/to/plain_cmake
+mkdir build && cd build
+cmake ..
+make
+sudo checkinstall
+```
 
+After installing the package to the system, we can use it in another CMake project by finding it and linking against it just like in the catkin workspace example.
+The only difference is, that we do not use the `catkin_package` macro.
 
-## References
+```cmake
+find_package(plain_cmake)
+
+add_executable(app src/app.cpp)
+target_link_libraries(app plain_cmake::plain_cmake_lib)
+```
+
+A full example can be found in the *consumer_cmake* directory of the [example repository](https://github.com/Tuebel/ros_plain_cmake).
+Note that the cmake consumer package is not compiled by catkin as it does not include a *package.xml*.
+
+# Conclusion
+We have implemented a plain CMake package that can be used in a catkin workspace and installed to the system.
+Not depending on catkin makes it easier to share your work in a ROS-agnostic environment.
+Moreover if you intend to transition to ROS2 in the near future, separating the algorithms and ROS bits might improve your experience.
+If you have any questions or recommendations, feel free to comment or open a pull-request.
+
+## References and Useful Resources
 [^1]: [https://www.ros.org/reps/rep-0134.html]
-
-
-
-# TODO
-- Plain CMake packages cannot be compiled via `catkin_make` [^1].
-- Having ROS dependencies requires catkin anyways.
-- Use inclusive "we"
-- 
