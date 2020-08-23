@@ -10,7 +10,7 @@ I have studied mechanical and automation engineering.
 Currently, I am with the Institute of Automatic Control, RWTH Aachen University working on my doctors degree.
 
 I am a coder, maker and robotics nerd.
-Also, I like playing my guitar and piano as well as tech, skiingand running.
+Also, I like playing my guitar and piano as well as tech, skiing and running.
 
 # Thanks
 This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
