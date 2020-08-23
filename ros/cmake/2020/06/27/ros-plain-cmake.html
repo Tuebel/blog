@@ -3,34 +3,36 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>(WIP) ROS Plain CMake | 🤖 Tim Übelhörs blog</title>
+<title>ROS Plain CMake | 🤖 Tim Übelhörs blog</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="(WIP) ROS Plain CMake" />
+<meta property="og:title" content="ROS Plain CMake" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS." />
-<meta property="og:description" content="Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS." />
+<meta name="description" content="Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without ROS." />
+<meta property="og:description" content="Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without ROS." />
 <link rel="canonical" href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" />
 <meta property="og:url" content="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" />
 <meta property="og:site_name" content="🤖 Tim Übelhörs blog" />
+<meta property="og:image" content="https://tuebel.github.io/blog/images/plain_cmake_preview.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-27T00:00:00-05:00" />
 <script type="application/ld+json">
-{"headline":"(WIP) ROS Plain CMake","dateModified":"2020-06-27T00:00:00-05:00","description":"Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS.","datePublished":"2020-06-27T00:00:00-05:00","@type":"BlogPosting","url":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html"},"@context":"https://schema.org"}</script>
+{"headline":"ROS Plain CMake","dateModified":"2020-06-27T00:00:00-05:00","description":"Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without ROS.","datePublished":"2020-06-27T00:00:00-05:00","@type":"BlogPosting","image":"https://tuebel.github.io/blog/images/plain_cmake_preview.png","url":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://tuebel.github.io/blog/feed.xml" title="🤖 Tim Übelhörs blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>(WIP) ROS Plain CMake | 🤖 Tim Übelhörs blog</title>
+<title>ROS Plain CMake | 🤖 Tim Übelhörs blog</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="(WIP) ROS Plain CMake" />
+<meta property="og:title" content="ROS Plain CMake" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS." />
-<meta property="og:description" content="Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS." />
+<meta name="description" content="Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without ROS." />
+<meta property="og:description" content="Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without ROS." />
 <link rel="canonical" href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" />
 <meta property="og:url" content="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" />
 <meta property="og:site_name" content="🤖 Tim Übelhörs blog" />
+<meta property="og:image" content="https://tuebel.github.io/blog/images/plain_cmake_preview.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-27T00:00:00-05:00" />
 <script type="application/ld+json">
-{"headline":"(WIP) ROS Plain CMake","dateModified":"2020-06-27T00:00:00-05:00","description":"Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS.","datePublished":"2020-06-27T00:00:00-05:00","@type":"BlogPosting","url":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html"},"@context":"https://schema.org"}</script>
+{"headline":"ROS Plain CMake","dateModified":"2020-06-27T00:00:00-05:00","description":"Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without ROS.","datePublished":"2020-06-27T00:00:00-05:00","@type":"BlogPosting","image":"https://tuebel.github.io/blog/images/plain_cmake_preview.png","url":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -101,7 +103,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">(WIP) ROS Plain CMake</h1><p class="page-description">Tutorial on creating a plain CMake package without any ROS dependencies that can be used with ROS.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-27T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">ROS Plain CMake</h1><p class="page-description">Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without  ROS.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-27T00:00:00-05:00" itemprop="datePublished">
         Jun 27, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -132,12 +134,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#packagexml">package.xml</a></li>
 <li class="toc-entry toc-h1"><a href="#cmakeliststxt">CMakeLists.txt</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#includes-and-settings">Includes and settings</a></li>
+<li class="toc-entry toc-h2"><a href="#includes-and-settings">Includes and Settings</a></li>
 <li class="toc-entry toc-h2"><a href="#defining-targets">Defining targets</a></li>
 <li class="toc-entry toc-h2"><a href="#installing-the-targets">Installing the targets</a></li>
 <li class="toc-entry toc-h2"><a href="#export-targets">Export Targets</a></li>
 <li class="toc-entry toc-h2"><a href="#package-configuration-generation">Package Configuration Generation</a></li>
-<li class="toc-entry toc-h2"><a href="#the-configcmakein-file">The Config.cmake.in File</a></li>
+<li class="toc-entry toc-h2"><a href="#configcmakein">Config.cmake.in</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#usage">Usage</a>
@@ -154,41 +156,38 @@ window.onload = wrap_img;
 </ul><h1 id="motivation">
 <a class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h1>
 <p>Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
-To increase the reusability, the logic / algorithms should be placed in a different package which does not rely on the ROS bits.
-This enables the community or colleagues to use the code in non-ROS projects.
-However, this requires the programmer to manually add the packaging magic that catkin would do.
-This blog post provides some insight on what is required to make a CMake project ‘find_packagable’.</p>
+To enable reusing the code in a ROS-agnostic context, the logic and the ROS-bits should be placed in a different packages.
+However, this requires the programmer to manually add the packaging magic of <code class="highlighter-rouge">catkin_package()</code>.
+This blog post provides insight on what is required to make a CMake project ‘find_packagable’ <sup id="fnref:CmakePackage" role="doc-noteref"><a href="#fn:CmakePackage" class="footnote">1</a></sup>.</p>
 
 <h1 id="example-repository">
 <a class="anchor" href="#example-repository" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example repository</h1>
 <p>A minimal working example of a ROS workspace can be found <a href="https://github.com/Tuebel/ros_plain_cmake">here</a>.
-This workspace contrains three packages:</p>
+This workspace contains three packages:</p>
 <ol>
   <li>
-<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/catkin_pkg">catkin_pkg</a>: test the plain_cmake package in a ROS workspace</li>
+<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/plain_cmake">plain_cmake</a>: Minimal example of a plain CMake package for ROS.</li>
   <li>
-<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/consumer_cmake">consumer_cmake</a>: test the system installation of plain_cmake in another CMake project</li>
+<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/catkin_pkg">catkin_pkg</a>: Test the plain_cmake package in a ROS workspace.</li>
   <li>
-<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/plain_cmake">plain_cmake</a>: minimal example of a plain CMake package for ROS
-This blog post will fokus on the plain_cmake package.</li>
+<a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/consumer_cmake">consumer_cmake</a>: Test the system installation of plain_cmake in another CMake project.</li>
 </ol>
 
-<p>Importing the package into another CMake or catkin package is straight forward and tutorials can be found in the <a href="http://wiki.ros.org/catkin/Tutorials/CreatingPackage">ROS wiki</a>.</p>
+<p>This blog post will fokus on the plain_cmake package but will also give short examples of reusing the package.</p>
 
 <h1 id="packagexml">
 <a class="anchor" href="#packagexml" aria-hidden="true"><span class="octicon octicon-link"></span></a>package.xml</h1>
-<p>Even though a <code class="highlighter-rouge">package.xml</code> is not required for the CMake functionalities, it is still required in the context of ROS.
-This file gets parsed by the build tool to determine the dependencies and the build order.
-To mark our project as plain CMake we add the following tags to our <code class="highlighter-rouge">package.xml</code>:</p>
+<p>Even though a <em>package.xml</em> is not required for the CMake functionalities, it is still required in the context of ROS.
+This file gets parsed by the build tool, for example <code class="highlighter-rouge">catkin build</code> to determine the dependencies and the build order <sup id="fnref:REP140" role="doc-noteref"><a href="#fn:REP140" class="footnote">2</a></sup>.
+To mark our project as plain CMake we add the following tags to our <em>package.xml</em>:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;buildtool_depend&gt;</span>cmake<span class="nt">&lt;/buildtool_depend&gt;</span>
-
 <span class="nt">&lt;exports&gt;</span>
   <span class="nt">&lt;build_type&gt;</span>cmake<span class="nt">&lt;/build_type&gt;</span>
 <span class="nt">&lt;/exports&gt;</span>
 </code></pre></div></div>
 
-<p>Many dependencies can be installed via <a href="http://wiki.ros.org/rosdep">rosdep</a> so they should be added, too.
+<p>Many dependencies can be installed via <a href="http://wiki.ros.org/rosdep">rosdep</a> so they should be added to the <em>package.xml</em>, too.
 Make sure to visit <a href="http://rosindex.github.io/">rosindex</a> to find the correct name of the dependencies.
 For example for linear algebra, matrix and vector operations the package could depend on <a href="http://eigen.tuxfamily.org/">Eigen</a>:</p>
 
@@ -198,21 +197,20 @@ For example for linear algebra, matrix and vector operations the package could d
 <h1 id="cmakeliststxt">
 <a class="anchor" href="#cmakeliststxt" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMakeLists.txt</h1>
 <h2 id="includes-and-settings">
-<a class="anchor" href="#includes-and-settings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Includes and settings</h2>
+<a class="anchor" href="#includes-and-settings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Includes and Settings</h2>
 <p>First, we include some CMake helpers.
-The former provides variables for default installation directories like <code class="highlighter-rouge">${CMAKE_INSTALL_LIBDIR}</code> while the former provides functions for the automatic generation of the CMake configuration files.
-These files are mandatory for a CMake package to provide the <code class="highlighter-rouge">find_package</code> functionality.</p>
+<code class="highlighter-rouge">GNUInstallDirs</code> provides variables for default installation directories like <code class="highlighter-rouge">${CMAKE_INSTALL_LIBDIR}</code> while the <code class="highlighter-rouge">CMakePackageConfigHelpers</code> provides functions for the automatic generation of the CMake configuration files.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">include</span><span class="p">(</span>GNUInstallDirs<span class="p">)</span>
 <span class="nb">include</span><span class="p">(</span>CMakePackageConfigHelpers<span class="p">)</span>
 </code></pre></div></div>
 
-<p>Afterwards, some variables are set to configure this package package.
+<p>Afterwards, some package specific variables are set.
 We will use some modern features which require CMake version 3.1 or higher.
 Then, we define a name and version for the package and set the C++ standard to version 11.
-In the last line, we define the variable <code class="highlighter-rouge">ConfigPackageLocation</code> which contains the path where our CMake package configuration files will be installed.
-Under Linux CMake will search in several locations for the Config.cmake file.
-One of the locations is <code class="highlighter-rouge">lib/&lt;package name&gt;/</code> and we append <code class="highlighter-rouge">/cmake</code> to keep our installation directory clean.</p>
+In the last line, we define the variable <code class="highlighter-rouge">ConfigPackageLocation</code> which contains the path where our CMake package configuration files will be installed <sup id="fnref:UseCmakeEnabled" role="doc-noteref"><a href="#fn:UseCmakeEnabled" class="footnote">3</a></sup>.
+Under Linux, CMake will search in several locations for the Config.cmake file.
+One of the locations is <code class="highlighter-rouge">lib/&lt;package name&gt;/cmake</code>.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.1<span class="p">)</span>
 <span class="nb">project</span><span class="p">(</span>plain_cmake<span class="p">)</span>
@@ -231,8 +229,9 @@ In this example, the Eigen3 library is required.</p>
 <a class="anchor" href="#defining-targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining targets</h2>
 <p>This step is very similar to defining targets in a catkin package.
 In this example, we define a library named after project which consists of a single source file.
-Instead of 
-However, as the <a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html">CMake documentation</a> states: “Include directories usage requirements commonly differ between the build-tree and the install-tree.”</p>
+It is good practice to include headers for each target instead of using the global <code class="highlighter-rouge">include_directories</code> <sup id="fnref:DoCmakeRight" role="doc-noteref"><a href="#fn:DoCmakeRight" class="footnote">4</a></sup>.
+However, as the <a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html">CMake documentation</a> states: “Include directories usage requirements commonly differ between the build-tree and the install-tree.”.
+Therefore, we have to use generator expressions to specify the correct include paths <sup id="fnref:HeaderOnly" role="doc-noteref"><a href="#fn:HeaderOnly" class="footnote">5</a></sup>.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_library</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib<span class="p">)</span>
 <span class="nf">target_sources</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PRIVATE
@@ -243,8 +242,7 @@ However, as the <a href="https://cmake.org/cmake/help/latest/command/target_incl
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PUBLIC Eigen3::Eigen<span class="p">)</span>
 </code></pre></div></div>
 
-<p>Moreover, we we define an application to showcase the installation and export of the targets later.
-Since we defined the library earlier, this application only needs to be linked to this very library.</p>
+<p>Moreover, we define an application and link it to our library:</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_executable</span><span class="p">(</span>example_app src/example_app.cpp<span class="p">)</span>
 <span class="nb">target_link_libraries</span><span class="p">(</span>example_app <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib<span class="p">)</span>
@@ -252,12 +250,12 @@ Since we defined the library earlier, this application only needs to be linked t
 
 <h2 id="installing-the-targets">
 <a class="anchor" href="#installing-the-targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing the targets</h2>
-<p>The obvious reason for using <code class="highlighter-rouge">install(TARGETS)</code> is to copy the libraries, binaries and headers to a system directory, where it can be found by other projects.
-The not so obvious reason is that we can use the <code class="highlighter-rouge">EXPORT</code> command to associate the installation targets with <code class="highlighter-rouge">${CMAKE_PROJECT_NAME}Targets</code>, which will be important in the next section.
+<p>The obvious reason for using <code class="highlighter-rouge">install(TARGETS)</code> is to copy the libraries, binaries and headers to a system directory, where they can be found by other projects <sup id="fnref:ModernCmakeInstall" role="doc-noteref"><a href="#fn:ModernCmakeInstall" class="footnote">6</a></sup>.
+The not so obvious reason is that we can use the <code class="highlighter-rouge">EXPORT</code> command to associate the installation targets with <code class="highlighter-rouge">plain_cmakeTargets</code>, which we will use in the next section.
 The <code class="highlighter-rouge">ARCHIVE</code>, <code class="highlighter-rouge">LIBRARY</code> and <code class="highlighter-rouge">RUNTIME</code> <code class="highlighter-rouge">DESTINATION</code> commands define where the files will be installed.
-Here, we use the GNUInstallDirs helper variables for the destination.
+Here, we use the <code class="highlighter-rouge">GNUInstallDirs</code> helper variables for the destination.
 There also exists an option to set the includes destination via <code class="highlighter-rouge">INCLUDES DESTINATION</code>.
-However, the includes destination has already been set via <code class="highlighter-rouge">target_include_directories</code> and thus can be omitted.</p>
+However, the includes destination has already been set via <code class="highlighter-rouge">target_include_directories</code> and thus can be omitted <sup id="fnref:HeaderOnly:1" role="doc-noteref"><a href="#fn:HeaderOnly" class="footnote">5</a></sup>.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">install</span><span class="p">(</span>TARGETS <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib example_app
   EXPORT <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>Targets
@@ -269,8 +267,8 @@ However, the includes destination has already been set via <code class="highligh
 <p>The header files require a separate installation command to copy them to a system directory.
 You can either use <code class="highlighter-rouge">install(FILES)</code> to install a list of files or <code class="highlighter-rouge">install(DIRECTORY)</code> to install a whole directory.
 Since all header files of the example package are stored in the <em>include/plain_cmake</em> directory, we use the latter.
-Again, we use a GNUInstallDirs variable for the include destination.
-Please note the “/” after the “include”.</p>
+Again, we use a <code class="highlighter-rouge">GNUInstallDirs</code> variable for the include destination.
+Please note the ‘/’ after the ‘include’.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">install</span><span class="p">(</span>DIRECTORY include/
   DESTINATION <span class="si">${</span><span class="nv">CMAKE_INSTALL_INCLUDEDIR</span><span class="si">}</span><span class="p">)</span>
@@ -278,18 +276,18 @@ Please note the “/” after the “include”.</p>
 
 <h2 id="export-targets">
 <a class="anchor" href="#export-targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Export Targets</h2>
-<p>In the last section we associated the install targets with <code class="highlighter-rouge">${CMAKE_PROJECT_NAME}Targets</code>.
-Now, we can use this to generate the <em>plain_cmakeTargets.cmake</em> which will allow other projects to import our targets.
-The <code class="highlighter-rouge">NAMESPACE</code> is be prepended to the target names, so the library can be linked via <code class="highlighter-rouge">plain_cmake::plain_cmake_lib</code>.
-If you have not specified an installation, you could alternatively use <code class="highlighter-rouge">export(TARGETS)</code> to manually specify the targets.</p>
+<p>In the last section we associated the install targets with <code class="highlighter-rouge">plain_cmakeTargets</code>.
+Now, we can use this association to generate the <em>plain_cmakeTargets.cmake</em> which will allow other projects to import our targets.
+The <code class="highlighter-rouge">NAMESPACE</code> is be prepended to the target names, so we can link to this library via <code class="highlighter-rouge">plain_cmake::plain_cmake_lib</code>.
+If you do not want to specify and associate an installation target, you could alternatively use <code class="highlighter-rouge">export(TARGETS)</code> to manually specify and export the targets for the build tree.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export</span><span class="p">(</span>EXPORT <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>Targets
   FILE <span class="si">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>Targets.cmake
   NAMESPACE <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>::<span class="p">)</span>
 </code></pre></div></div>
 
-<p>The export command makes the targets available in the build tree only.
-To make the targets available for projects which are not part of the build tree, they also require an installation:</p>
+<p>The export command makes the targets available in the build tree only <sup id="fnref:InstallExportCmake" role="doc-noteref"><a href="#fn:InstallExportCmake" class="footnote">7</a></sup>.
+To make the targets available for projects which are not part of the build tree, we also have to install them:</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">install</span><span class="p">(</span>EXPORT <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>Targets
   FILE <span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>Targets.cmake
@@ -300,14 +298,14 @@ To make the targets available for projects which are not part of the build tree,
 <h2 id="package-configuration-generation">
 <a class="anchor" href="#package-configuration-generation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package Configuration Generation</h2>
 <p>This section describes the steps required to enable the <code class="highlighter-rouge">find_package</code> mechanism.
-For our plain_cmake project two files are required to turn it into a package:</p>
+For our plain_cmake project two files are required to turn it into a CMake package:</p>
 <ul>
   <li><em>plain_cmakeConfigVersion.cmake</em></li>
   <li><em>plain_cmakeConfig.cmake</em></li>
 </ul>
 
-<p>We can use the <code class="highlighter-rouge">CMakePackageConfigHelpers</code> for the generation of both files.
-The <em>plain_cmakeConfigVersion.cmake</em> can easily be generated by specifying he version number of the package and a compatibility:</p>
+<p>We can use the <code class="highlighter-rouge">CMakePackageConfigHelpers</code> for the generation of both files <sup id="fnref:ConfigHelpers" role="doc-noteref"><a href="#fn:ConfigHelpers" class="footnote">8</a></sup>.
+The <em>plain_cmakeConfigVersion.cmake</em> can easily be generated by specifying the version number of the package and a compatibility setting:</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">write_basic_package_version_file</span><span class="p">(</span>
   <span class="si">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>ConfigVersion.cmake
@@ -315,15 +313,16 @@ The <em>plain_cmakeConfigVersion.cmake</em> can easily be generated by specifyin
   COMPATIBILITY SameMajorVersion<span class="p">)</span>
 </code></pre></div></div>
 
-<p>Generating the <em>plain_cmakeConfig.cmake</em> involves a bit more work but we can use the <code class="highlighter-rouge">configure_package_config_file</code> helper which requires:</p>
+<p>Generating the <em>plain_cmakeConfig.cmake</em> involves a bit more work.
+But, we can use the <code class="highlighter-rouge">configure_package_config_file</code> helper to simplify the process.
+This helper function requires:</p>
 <ul>
   <li>The <em>plain_cmakeConfig.cmake.in</em> makes the targets and dependencies available to the importing project.
 This file will be explained in the next section.</li>
   <li>An output filename, which expands to <em>${CMAKE_CURRENT_BINARY_DIR}/plain_cmakeConfig.cmake</em>.</li>
-  <li>The path where the <em>plain_cmakeConfig.cmake</em> will be installed, which is the same as the installation path of the <em>plain_cmakeTargets.cmake</em>.</li>
-  <li>The ` PATHS_VARS <variable1> <variable2> ...` are variables of the installation locations.
-Our example package only requires one variable `INCLUDE_INSTALL_DIR` for the location of the headers.</variable2></variable1>
-</li>
+  <li>The path where the <em>plain_cmakeConfig.cmake</em> will be installed, which is the same as the installation path of <em>plain_cmakeTargets.cmake</em>.</li>
+  <li>The <code class="highlighter-rouge">PATHS_VARS variable1 variable2 ...</code> can be used to pass different installation locations to the <em>plain_cmakeConfig.cmake.in</em>.
+Our example package only requires one variable <code class="highlighter-rouge">INCLUDE_INSTALL_DIR</code> for the location of the headers.</li>
 </ul>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span>INCLUDE_INSTALL_DIR <span class="si">${</span><span class="nv">CMAKE_INSTALL_INCLUDEDIR</span><span class="si">}</span><span class="p">)</span>
@@ -334,9 +333,9 @@ Our example package only requires one variable `INCLUDE_INSTALL_DIR` for the loc
   PATH_VARS INCLUDE_INSTALL_DIR<span class="p">)</span>
 </code></pre></div></div>
 
-<p>After generating both, the <em>ConfigVersion.cmake</em> and the <em>Config.cmake</em> files they can be installed to a system directory.
+<p>After generating both, the <em>ConfigVersion.cmake</em> and the <em>Config.cmake</em> files, they can be installed to a system directory.
 We use the same installation command that we used for the installation of the header files.
-It is important, the installation <code class="highlighter-rouge">DESTINATION</code> matches the one specified in <code class="highlighter-rouge">configure_package_config_file</code>.</p>
+It is important that the installation <code class="highlighter-rouge">DESTINATION</code> matches the one specified in <code class="highlighter-rouge">configure_package_config_file</code>.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">install</span><span class="p">(</span>FILES 
   <span class="si">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>Config.cmake
@@ -344,28 +343,28 @@ It is important, the installation <code class="highlighter-rouge">DESTINATION</c
   DESTINATION <span class="si">${</span><span class="nv">ConfigPackageLocation</span><span class="si">}</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h2 id="the-configcmakein-file">
-<a class="anchor" href="#the-configcmakein-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>The <code class="highlighter-rouge">Config.cmake.in</code> File</h2>
-<p>The first line will automatically be expanded by the config helpers to make the file relocatable.</p>
+<h2 id="configcmakein">
+<a class="anchor" href="#configcmakein" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config.cmake.in</h2>
+<p>The first line will be automatically expanded by the config helpers to make the file relocatable.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@PACKAGE_INIT@
 </code></pre></div></div>
 
-<p>Next, we make the targets we defined earlier available to the consumer projects:</p>
+<p>Next, we make the targets which we defined earlier available to the consumer projects:</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">include</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_CURRENT_LIST_DIR</span><span class="si">}</span>/plain_cmakeTargets.cmake<span class="p">)</span>
 </code></pre></div></div>
 
-<p>If we want to use our library in a catkin package we are required to set the variables <code class="highlighter-rouge">plain_cmake_INCLUDE_DIRS</code> and <code class="highlighter-rouge">plain_cmake_LIBRARIES</code>.
-Otherwise <code class="highlighter-rouge">catkin_package()</code> would result in the following warning&gt;</p>
+<p>If we want to use our library in a <strong>catkin package</strong> we are required to set the variables <code class="highlighter-rouge">plain_cmake_INCLUDE_DIRS</code> and <code class="highlighter-rouge">plain_cmake_LIBRARIES</code>.
+Otherwise <code class="highlighter-rouge">catkin_package()</code> would result in the following warning:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>catkin_package() DEPENDS on 'plain_cmake' but neither 'plain_cmake_INCLUDE_DIRS' nor 'plain_cmake_LIBRARIES' is defined.
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>catkin_package<span class="o">()</span> DEPENDS on <span class="s1">'plain_cmake'</span> but neither <span class="s1">'plain_cmake_INCLUDE_DIRS'</span> nor <span class="s1">'plain_cmake_LIBRARIES'</span> is defined.
 </code></pre></div></div>
 
-<p>As <code class="highlighter-rouge">plain_cmake_INCLUDE_DIRS</code> is a path and we would like our package to be relocatable, we use the <code class="highlighter-rouge">@PACKAGE_&lt;variable&gt;@</code> macro.
+<p>To make our package relocatable, we use the <code class="highlighter-rouge">@PACKAGE_&lt;variable&gt;@</code> macro for the path of <code class="highlighter-rouge">plain_cmake_INCLUDE_DIRS</code>.
 This macro expands the path variables from <code class="highlighter-rouge">PATH_VARS</code> we passed to <code class="highlighter-rouge">configure_package_config_file</code>.
-Earlier, we set the <code class="highlighter-rouge">INCLUDE_INSTALL_DIR</code> variable to <code class="highlighter-rouge">${CMAKE_INSTALL_INCLUDEDIR}</code>.
-When building the plain_cmake library in a catkin workspace, the macro <code class="highlighter-rouge">@PACKAGE_INCLUDE_INSTALL_DIR@</code> is the expanded <code class="highlighter-rouge">&lt;path to catkin_ws&gt;/devel/include</code> and can be accessed via <code class="highlighter-rouge">plain_cmake_INCLUDE_DIRS</code>.</p>
+Remember, we set the <code class="highlighter-rouge">INCLUDE_INSTALL_DIR</code> variable to <code class="highlighter-rouge">${CMAKE_INSTALL_INCLUDEDIR}</code>.
+For example, when building the plain_cmake library in a catkin workspace, the macro <code class="highlighter-rouge">@PACKAGE_INCLUDE_INSTALL_DIR@</code> is the expanded <code class="highlighter-rouge">path/to/catkin_ws/devel/include</code>.</p>
 
 <p>The <code class="highlighter-rouge">set_and_check</code> helper checks whether the path we set actually exists.
 Moreover, we populate the <code class="highlighter-rouge">plain_cmake_LIBRARIES</code> with our library target - notice the namespace.</p>
@@ -375,54 +374,54 @@ Moreover, we populate the <code class="highlighter-rouge">plain_cmake_LIBRARIES<
 </code></pre></div></div>
 
 <p>Theoretically, we could use <code class="highlighter-rouge">find_package</code> and <code class="highlighter-rouge">target_link_libraries</code> to compile against our library now.
-However this would result in an error that the target “Eigen3::Eigen” was not be found.
-Forwarding the dependencies is easy using the find dependency macro.
+However, this would result in an error that the target <code class="highlighter-rouge">Eigen3::Eigen</code> was not be found.
+Forwarding the dependencies is easily accomplished by using the find dependency macro.
 Simply insert the same package requirements as in <code class="highlighter-rouge">find_package</code> from the beginning of your <em>CMakeLists.txt</em>.
 The difference to <code class="highlighter-rouge">find_package</code> is that this macro will return with an error message from the <em>Config.cmake</em> iif the package cannot be found.</p>
 
 <p>Please note that there seems to be an issue with the expansion of the <code class="highlighter-rouge">@PACKAGE_&lt;...&gt;@</code> macros when using <code class="highlighter-rouge">find_dependency</code> before it.
-When finding Eigen3 before setting the <code class="highlighter-rouge">plain_cmake_INCLUDE_DIRS</code> it would point to the Eigen3 include directory instead of the plain_cmake ones.</p>
+When finding Eigen3 before setting the <code class="highlighter-rouge">plain_cmake_INCLUDE_DIRS</code>, the path would be expanded to the Eigen3 include directory instead of the plain_cmake’s one.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">include</span><span class="p">(</span>CMakeFindDependencyMacro<span class="p">)</span>
 <span class="nf">find_dependency</span><span class="p">(</span>Eigen3 3.3 REQUIRED NO_MODULE<span class="p">)</span>
 </code></pre></div></div>
 
-<p>Finally it is recommended to call the following to confirm that all required components have been found:</p>
+<p>Finally it is recommended to call the following line to confirm that all required components have been found:</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">check_required_components</span><span class="p">(</span>plain_cmake<span class="p">)</span>
 </code></pre></div></div>
 
 <h1 id="usage">
 <a class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
-<p>Now, that we have completed our plain CMake package, it is time to use it in another project.
+<p>Now that we have completed our plain CMake package, it is time to use it in another project.
 We implemented the package so that it can be used in the build tree of a catkin workspace or from a system installation.</p>
 
 <h2 id="catkin-workspace">
 <a class="anchor" href="#catkin-workspace" aria-hidden="true"><span class="octicon octicon-link"></span></a>Catkin Workspace</h2>
 <p>Using the <code class="highlighter-rouge">plain_cmake</code> package is pretty straight forward, almost as using any other catkin package.
-Catkin uses the package.xml to determine the build order.
-Thus, we add the following line to the package.xml of the consumer package&gt;</p>
+Catkin uses the <em>package.xml</em> to determine the build order <sup id="fnref:REP140:1" role="doc-noteref"><a href="#fn:REP140" class="footnote">2</a></sup>.
+Thus, we add the following line to the <em>package.xml</em> of the consumer package:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;depend&gt;</span>plain_cmake<span class="nt">&lt;/depend&gt;</span>
 </code></pre></div></div>
 
-<p>In the CMakeLists.txt of the catkin package we can use the <code class="highlighter-rouge">find_package</code> mechanism to include our plain CMake package.</p>
+<p>In the <em>CMakeLists.txt</em> of the catkin package we can use the <code class="highlighter-rouge">find_package</code> mechanism to use our plain_cmake package.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>plain_cmake REQUIRED<span class="p">)</span> 
 </code></pre></div></div>
 
 <p>Catkin uses the <code class="highlighter-rouge">catkin_package</code> macro to generate the package configuration which we generated via <code class="highlighter-rouge">configure_package_config_file</code> and <code class="highlighter-rouge">write_basic_package_version_file</code>.
-To forward our package further down the dependency tree, we have to add it as non-catkin dependency via <code class="highlighter-rouge">DEPENDS</code>.</p>
+To forward our package further down the dependency tree, we have to add it as a non-catkin dependency <sup id="fnref:RosCmake" role="doc-noteref"><a href="#fn:RosCmake" class="footnote">9</a></sup>:</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">catkin_package</span><span class="p">(</span>
  CATKIN_DEPENDS roscpp std_msgs
  DEPENDS plain_cmake<span class="p">)</span>
 </code></pre></div></div>
 
-<p>After <code class="highlighter-rouge">catkin_package</code> the targets of the catkin package can be defined.
-For example, we can add a ROS node executable <code class="highlighter-rouge">test_node</code> that depends on the <code class="highlighter-rouge">plain_cmake_lib</code>.
-If the package was found via <code class="highlighter-rouge">find_package</code>, the library can be linked via <code class="highlighter-rouge">target_link_library</code>.
-Sine we exported the target in the namespace <code class="highlighter-rouge">plain_cmake</code> we have to link the node against <code class="highlighter-rouge">plain_cmake::plain_cmake_lib</code>.</p>
+<p>After <code class="highlighter-rouge">catkin_package()</code>, the targets of the catkin package can be defined.
+For example, we can add a ROS node executable that depends on the <code class="highlighter-rouge">plain_cmake_lib</code>.
+If the package was found via <code class="highlighter-rouge">find_package()</code>, the library can be linked via <code class="highlighter-rouge">target_link_library()</code>.
+Since we exported the target in the namespace <code class="highlighter-rouge">plain_cmake</code>, we have to link the node against <code class="highlighter-rouge">plain_cmake::plain_cmake_lib</code>.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_executable</span><span class="p">(</span>test_node src/test_node.cpp<span class="p">)</span>
 <span class="nb">target_include_directories</span><span class="p">(</span>test_node 
@@ -433,44 +432,76 @@ Sine we exported the target in the namespace <code class="highlighter-rouge">pla
 
 <p>Finally, we can compile the whole catkin workspace.
 As the plain CMake package makes it a mixed workspace, we cannot use <code class="highlighter-rouge">catkin_make</code>.
-Instead, <code class="highlighter-rouge">catkin_make_isolated</code> or <code class="highlighter-rouge">catkin build</code> from the catkin_tools has to be used.
-An example of the above can be found in <em>catkin_pkg</em> directory of the <a href="https://github.com/Tuebel/ros_plain_cmake">example repository</a>.</p>
+Instead, <code class="highlighter-rouge">catkin_make_isolated</code><sup id="fnref:REP134" role="doc-noteref"><a href="#fn:REP134" class="footnote">10</a></sup> or the catkin_tools have to be used.
+An example can be found in <a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/catkin_pkg">catkin_pkg</a>.</p>
 
 <h2 id="cmake-system-installation">
 <a class="anchor" href="#cmake-system-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMake System Installation</h2>
-<p>Since the <code class="highlighter-rouge">plain_cmake</code> package’s only catkin bit is the <em>package.xml</em>, it can be installed and used like any other system dependency.
+<p>Since the <code class="highlighter-rouge">plain_cmake</code> package’s only ROS bit is the <em>package.xml</em>, it can be installed and used like any other system dependency.
 Navigate to the <em>plain_cmake</em> directory and create a <em>build</em> directory to keep the workspace clean.
 Inside this directory we can call the typical sequence of commands to build and install a CMake package.
-For development, I prefer using <code class="highlighter-rouge">checkinstall</code> instead of <code class="highlighter-rouge">make install</code> because it enables an easy cleanup via your favorite package manager, for example <code class="highlighter-rouge">apt-get</code>.</p>
+For development, I prefer using <code class="highlighter-rouge">checkinstall</code> instead of <code class="highlighter-rouge">make install</code> because it enables an easy cleanup via apackage manager like <code class="highlighter-rouge">dpkg</code>.</p>
 
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd path/to/plain_cmake
-mkdir build &amp;&amp; cd build
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>path/to/plain_cmake
+<span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
 cmake ..
 make
-sudo checkinstall
+<span class="nb">sudo </span>checkinstall
 </code></pre></div></div>
 
 <p>After installing the package to the system, we can use it in another CMake project by finding it and linking against it just like in the catkin workspace example.
 The only difference is, that we do not use the <code class="highlighter-rouge">catkin_package</code> macro.</p>
 
 <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>plain_cmake<span class="p">)</span>
-
 <span class="nb">add_executable</span><span class="p">(</span>app src/app.cpp<span class="p">)</span>
 <span class="nb">target_link_libraries</span><span class="p">(</span>app plain_cmake::plain_cmake_lib<span class="p">)</span>
 </code></pre></div></div>
 
-<p>A full example can be found in the <em>consumer_cmake</em> directory of the <a href="https://github.com/Tuebel/ros_plain_cmake">example repository</a>.
-Note that the cmake consumer package is not compiled by catkin as it does not include a <em>package.xml</em>.</p>
+<p>A full example can be found in <a href="https://github.com/Tuebel/ros_plain_cmake/tree/master/src/consumer_cmake">consumer_cmake</a>.
+Note, that if you compile the whole repository with catkin, the consumer_cmake project is not compiled as it does not include a <em>package.xml</em>.</p>
 
 <h1 id="conclusion">
 <a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h1>
-<p>We have implemented a plain CMake package that can be used in a catkin workspace and installed to the system.
-Not depending on catkin makes it easier to share your work in a ROS-agnostic environment.
-Moreover if you intend to transition to ROS2 in the near future, separating the algorithms and ROS bits might improve your experience.
-If you have any questions or recommendations, feel free to comment or open a pull-request.</p>
+<p>We have implemented a plain CMake package that can be used in a catkin workspace and in a ROS-agnostic setting.
+This portability is also useful, if you intend to transition to ROS2 in the near future, as colcon supports plain CMake packages, too.
+If you have any questions or recommendations, feel free to comment or open a pull-request 🤖.</p>
 
 <h2 id="references-and-useful-resources">
 <a class="anchor" href="#references-and-useful-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>References and Useful Resources</h2>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:CmakePackage" role="doc-endnote">
+      <p>https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html <a href="#fnref:CmakePackage" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:REP140" role="doc-endnote">
+      <p>https://www.ros.org/reps/rep-0140.html <a href="#fnref:REP140" class="reversefootnote" role="doc-backlink">↩</a> <a href="#fnref:REP140:1" class="reversefootnote" role="doc-backlink">↩<sup>2</sup></a></p>
+    </li>
+    <li id="fn:UseCmakeEnabled" role="doc-endnote">
+      <p>https://coderwall.com/p/qej45g/use-cmake-enabled-libraries-in-your-cmake-project-iii <a href="#fnref:UseCmakeEnabled" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:DoCmakeRight" role="doc-endnote">
+      <p>https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/ <a href="#fnref:DoCmakeRight" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:HeaderOnly" role="doc-endnote">
+      <p>https://dominikberner.ch/cmake-interface-lib/ <a href="#fnref:HeaderOnly" class="reversefootnote" role="doc-backlink">↩</a> <a href="#fnref:HeaderOnly:1" class="reversefootnote" role="doc-backlink">↩<sup>2</sup></a></p>
+    </li>
+    <li id="fn:ModernCmakeInstall" role="doc-endnote">
+      <p>https://cliutils.gitlab.io/modern-cmake/chapters/install/installing.html <a href="#fnref:ModernCmakeInstall" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:InstallExportCmake" role="doc-endnote">
+      <p>https://medium.com/@kkunalsharma825/install-and-export-in-cmake-5c26d20ff715 <a href="#fnref:InstallExportCmake" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:ConfigHelpers" role="doc-endnote">
+      <p>https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html <a href="#fnref:ConfigHelpers" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:RosCmake" role="doc-endnote">
+      <p>wiki.ros.org/catkin/CMakeLists.txt <a href="#fnref:RosCmake" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:REP134" role="doc-endnote">
+      <p>https://www.ros.org/reps/rep-0134.html <a href="#fnref:REP134" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+  </ol>
+</div>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
