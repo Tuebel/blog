@@ -1,6 +1,6 @@
 ---
 title: "ROS Plain CMake"
-description: "Tutorial on creating a plain CMake package that can be used in a catkin workspace as a system dependency without  ROS."
+description: "Tutorial on creating a plain CMake package that can be used in a catkin workspace and as a system dependency without  ROS."
 layout: post
 toc: true
 comments: true
