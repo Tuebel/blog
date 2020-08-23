@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://tuebel.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://tuebel.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-08-23T05:07:28-05:00</updated><id>https://tuebel.github.io/blog/feed.xml</id><title type="html">🤖 Tim Übelhörs blog</title><subtitle>Hacks, tricks and awesomeness for robots and you. GoROS!</subtitle><entry><title type="html">(WIP) ROS Plain CMake</title><link href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" rel="alternate" type="text/html" title="(WIP) ROS Plain CMake" /><published>2020-06-27T00:00:00-05:00</published><updated>2020-06-27T00:00:00-05:00</updated><id>https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake</id><content type="html" xml:base="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html">&lt;h1 id=&quot;motivation&quot;&gt;Motivation&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://tuebel.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://tuebel.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-08-23T05:31:20-05:00</updated><id>https://tuebel.github.io/blog/feed.xml</id><title type="html">🤖 Tim Übelhörs blog</title><subtitle>Hacks, tricks and awesomeness for robots and you. GoROS!</subtitle><entry><title type="html">(WIP) ROS Plain CMake</title><link href="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html" rel="alternate" type="text/html" title="(WIP) ROS Plain CMake" /><published>2020-06-27T00:00:00-05:00</published><updated>2020-06-27T00:00:00-05:00</updated><id>https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake</id><content type="html" xml:base="https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html">&lt;h1 id=&quot;motivation&quot;&gt;Motivation&lt;/h1&gt;
 &lt;p&gt;Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
 To increase the reusability, the logic / algorithms should be placed in a different package which does not rely on the ROS bits.
 This enables the community or colleagues to use the code in non-ROS projects.
@@ -264,23 +264,38 @@ Sine we exported the target in the namespace &lt;code class=&quot;highlighter-ro
 
 &lt;p&gt;Finally, we can compile the whole catkin workspace.
 As the plain CMake package makes it a mixed workspace, we cannot use &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin_make&lt;/code&gt;.
-Instead, &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin_make_isolated&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin build&lt;/code&gt; from the catkin_tools has to be used.&lt;/p&gt;
+Instead, &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin_make_isolated&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin build&lt;/code&gt; from the catkin_tools has to be used.
+An example of the above can be found in &lt;em&gt;catkin_pkg&lt;/em&gt; directory of the &lt;a href=&quot;https://github.com/Tuebel/ros_plain_cmake&quot;&gt;example repository&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;cmake-system-installation&quot;&gt;CMake System Installation&lt;/h2&gt;
+&lt;p&gt;Since the &lt;code class=&quot;highlighter-rouge&quot;&gt;plain_cmake&lt;/code&gt; package’s only catkin bit is the &lt;em&gt;package.xml&lt;/em&gt;, it can be installed and used like any other system dependency.
+Navigate to the &lt;em&gt;plain_cmake&lt;/em&gt; directory and create a &lt;em&gt;build&lt;/em&gt; directory to keep the workspace clean.
+Inside this directory we can call the typical sequence of commands to build and install a CMake package.
+For development, I prefer using &lt;code class=&quot;highlighter-rouge&quot;&gt;checkinstall&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;make install&lt;/code&gt; because it enables an easy cleanup via your favorite package manager, for example &lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd path/to/plain_cmake
+mkdir build &amp;amp;&amp;amp; cd build
+cmake ..
+make
+sudo checkinstall
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h1 id=&quot;todo&quot;&gt;TODO&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Plain CMake packages cannot be compiled via &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin_make&lt;/code&gt; &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
-  &lt;li&gt;Having ROS dependencies requires catkin anyways.&lt;/li&gt;
-  &lt;li&gt;Use inclusive “we”&lt;/li&gt;
-  &lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;[https://www.ros.org/reps/rep-0134.html] &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Motivation Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package. To increase the reusability, the logic / algorithms should be placed in a different package which does not rely on the ROS bits. This enables the community or colleagues to use the code in non-ROS projects. However, this requires the programmer to manually add the packaging magic that catkin would do. This blog post provides some insight on what is required to make a CMake project ‘find_packagable’.</summary></entry></feed>
+&lt;p&gt;After installing the package to the system, we can use it in another CMake project by finding it and linking against it just like in the catkin workspace example.
+The only difference is, that we do not use the &lt;code class=&quot;highlighter-rouge&quot;&gt;catkin_package&lt;/code&gt; macro.&lt;/p&gt;
+
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;find_package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;plain_cmake&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;add_executable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;app src/app.cpp&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;target_link_libraries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;app plain_cmake::plain_cmake_lib&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A full example can be found in the &lt;em&gt;consumer_cmake&lt;/em&gt; directory of the &lt;a href=&quot;https://github.com/Tuebel/ros_plain_cmake&quot;&gt;example repository&lt;/a&gt;.
+Note that the cmake consumer package is not compiled by catkin as it does not include a &lt;em&gt;package.xml&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;We have implemented a plain CMake package that can be used in a catkin workspace and installed to the system.
+Not depending on catkin makes it easier to share your work in a ROS-agnostic environment.
+Moreover if you intend to transition to ROS2 in the near future, separating the algorithms and ROS bits might improve your experience.
+If you have any questions or recommendations, feel free to comment or open a pull-request.&lt;/p&gt;
+
+&lt;h2 id=&quot;references-and-useful-resources&quot;&gt;References and Useful Resources&lt;/h2&gt;</content><author><name></name></author><summary type="html">Motivation Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package. To increase the reusability, the logic / algorithms should be placed in a different package which does not rely on the ROS bits. This enables the community or colleagues to use the code in non-ROS projects. However, this requires the programmer to manually add the packaging magic that catkin would do. This blog post provides some insight on what is required to make a CMake project ‘find_packagable’.</summary></entry></feed>

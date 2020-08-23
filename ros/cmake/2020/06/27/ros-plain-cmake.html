@@ -107,7 +107,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      9 min read
+      10 min read
     
 </span></p>
 
@@ -144,10 +144,13 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h2"><a href="#catkin-workspace">Catkin Workspace</a></li>
 <li class="toc-entry toc-h2"><a href="#cmake-system-installation">CMake System Installation</a></li>
-<li class="toc-entry toc-h2"><a href="#references">References</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#todo">TODO</a></li>
+<li class="toc-entry toc-h1"><a href="#conclusion">Conclusion</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#references-and-useful-resources">References and Useful Resources</a></li>
+</ul>
+</li>
 </ul><h1 id="motivation">
 <a class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h1>
 <p>Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
@@ -430,29 +433,44 @@ Sine we exported the target in the namespace <code class="highlighter-rouge">pla
 
 <p>Finally, we can compile the whole catkin workspace.
 As the plain CMake package makes it a mixed workspace, we cannot use <code class="highlighter-rouge">catkin_make</code>.
-Instead, <code class="highlighter-rouge">catkin_make_isolated</code> or <code class="highlighter-rouge">catkin build</code> from the catkin_tools has to be used.</p>
+Instead, <code class="highlighter-rouge">catkin_make_isolated</code> or <code class="highlighter-rouge">catkin build</code> from the catkin_tools has to be used.
+An example of the above can be found in <em>catkin_pkg</em> directory of the <a href="https://github.com/Tuebel/ros_plain_cmake">example repository</a>.</p>
 
 <h2 id="cmake-system-installation">
 <a class="anchor" href="#cmake-system-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMake System Installation</h2>
+<p>Since the <code class="highlighter-rouge">plain_cmake</code> package’s only catkin bit is the <em>package.xml</em>, it can be installed and used like any other system dependency.
+Navigate to the <em>plain_cmake</em> directory and create a <em>build</em> directory to keep the workspace clean.
+Inside this directory we can call the typical sequence of commands to build and install a CMake package.
+For development, I prefer using <code class="highlighter-rouge">checkinstall</code> instead of <code class="highlighter-rouge">make install</code> because it enables an easy cleanup via your favorite package manager, for example <code class="highlighter-rouge">apt-get</code>.</p>
 
-<h2 id="references">
-<a class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd path/to/plain_cmake
+mkdir build &amp;&amp; cd build
+cmake ..
+make
+sudo checkinstall
+</code></pre></div></div>
 
-<h1 id="todo">
-<a class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
-<ul>
-  <li>Plain CMake packages cannot be compiled via <code class="highlighter-rouge">catkin_make</code> <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>.</li>
-  <li>Having ROS dependencies requires catkin anyways.</li>
-  <li>Use inclusive “we”</li>
-  <li>
-</ul>
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>[https://www.ros.org/reps/rep-0134.html] <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
-    </li>
-  </ol>
-</div>
+<p>After installing the package to the system, we can use it in another CMake project by finding it and linking against it just like in the catkin workspace example.
+The only difference is, that we do not use the <code class="highlighter-rouge">catkin_package</code> macro.</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>plain_cmake<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span>app src/app.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>app plain_cmake::plain_cmake_lib<span class="p">)</span>
+</code></pre></div></div>
+
+<p>A full example can be found in the <em>consumer_cmake</em> directory of the <a href="https://github.com/Tuebel/ros_plain_cmake">example repository</a>.
+Note that the cmake consumer package is not compiled by catkin as it does not include a <em>package.xml</em>.</p>
+
+<h1 id="conclusion">
+<a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h1>
+<p>We have implemented a plain CMake package that can be used in a catkin workspace and installed to the system.
+Not depending on catkin makes it easier to share your work in a ROS-agnostic environment.
+Moreover if you intend to transition to ROS2 in the near future, separating the algorithms and ROS bits might improve your experience.
+If you have any questions or recommendations, feel free to comment or open a pull-request.</p>
+
+<h2 id="references-and-useful-resources">
+<a class="anchor" href="#references-and-useful-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>References and Useful Resources</h2>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
