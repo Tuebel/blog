@@ -80,12 +80,14 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 ## Defining targets
 This step is very similar to defining targets in a catkin package.
 In this example, we define a library named after project which consists of a single source file.
-It is good practice to include headers for each target instead of using the global `include_directories` [^DoCmakeRight].
-However, as the [CMake documentation](https://cmake.org/cmake/help/latest/command/target_include_directories.html) states: "Include directories usage requirements commonly differ between the build-tree and the install-tree.".
+It is good practice to include headers and sources for each target instead of using the global `include_directories()` [^DoCmakeRight].
+For the sources, `target_sources()` is considered IDE friendly but defining a library without any source will lead to a catkin warning.
+Adding at least one source file to the library seems to do the trick and all sources can be added via `target_sources()` 
+Including the header directories however is a bit more complicated, as the [CMake documentation](https://cmake.org/cmake/help/latest/command/target_include_directories.html) states: "Include directories usage requirements commonly differ between the build-tree and the install-tree.".
 Therefore, we have to use generator expressions to specify the correct include paths [^HeaderOnly].
 
 ```cmake
-add_library(${CMAKE_PROJECT_NAME}_lib)
+add_library(${CMAKE_PROJECT_NAME}_lib src/matrix_operations.cpp)
 target_sources(${CMAKE_PROJECT_NAME}_lib PRIVATE
   src/matrix_operations.cpp)
 target_include_directories(${CMAKE_PROJECT_NAME}_lib PUBLIC
