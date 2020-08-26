@@ -229,11 +229,13 @@ In this example, the Eigen3 library is required.</p>
 <a class="anchor" href="#defining-targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining targets</h2>
 <p>This step is very similar to defining targets in a catkin package.
 In this example, we define a library named after project which consists of a single source file.
-It is good practice to include headers for each target instead of using the global <code class="highlighter-rouge">include_directories</code> <sup id="fnref:DoCmakeRight" role="doc-noteref"><a href="#fn:DoCmakeRight" class="footnote">4</a></sup>.
-However, as the <a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html">CMake documentation</a> states: “Include directories usage requirements commonly differ between the build-tree and the install-tree.”.
+It is good practice to include headers and sources for each target instead of using the global <code class="highlighter-rouge">include_directories()</code> <sup id="fnref:DoCmakeRight" role="doc-noteref"><a href="#fn:DoCmakeRight" class="footnote">4</a></sup>.
+For the sources, <code class="highlighter-rouge">target_sources()</code> is considered IDE friendly but defining a library without any source will lead to a catkin warning.
+Adding at least one source file to the library seems to do the trick and all sources can be added via <code class="highlighter-rouge">target_sources()</code> 
+Including the header directories however is a bit more complicated, as the <a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html">CMake documentation</a> states: “Include directories usage requirements commonly differ between the build-tree and the install-tree.”.
 Therefore, we have to use generator expressions to specify the correct include paths <sup id="fnref:HeaderOnly" role="doc-noteref"><a href="#fn:HeaderOnly" class="footnote">5</a></sup>.</p>
 
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_library</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib<span class="p">)</span>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_library</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib src/matrix_operations.cpp<span class="p">)</span>
 <span class="nf">target_sources</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PRIVATE
   src/matrix_operations.cpp<span class="p">)</span>
 <span class="nb">target_include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">CMAKE_PROJECT_NAME</span><span class="si">}</span>_lib PUBLIC
