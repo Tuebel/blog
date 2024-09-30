@@ -36,11 +36,9 @@ url: "https://Tuebel.github.io" # the base hostname & protocol for your site, e.
 #
 baseurl: "/blog" # the subpath of your site, e.g. "/blog".
 
-# Github and twitter are optional:
-minima:
-  social_links:
-    twitter: TimUebelhoer
-    github: Tuebel
+author:
+  name: Tim Redick
+  bio: Father of two; likes coding, making, playing music; postdoc at Insitute of Automatic Control, RWTH Aachen University
 
 # Set this to true to get LaTeX math equation support
 use_math: true
