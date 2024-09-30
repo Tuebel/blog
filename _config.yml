@@ -70,9 +70,7 @@ default_badges:
 html_escape:
   description: false
 
-# Everything below here should be left alone. Modifications may break fastpages
 future: true
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-gist
