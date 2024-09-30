@@ -4,7 +4,7 @@ description: "Accumulation of information and best practices for implementing yo
 layout: post
 toc: true
 comments: true
-image: images/plain_cmake_preview.png
+# image: images/plain_cmake_preview.png
 hide: false
 search_exclude: true
 categories: [ROS, Hardware, ros_control]

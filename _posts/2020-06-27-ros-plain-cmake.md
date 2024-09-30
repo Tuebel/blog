@@ -4,7 +4,7 @@ description: "Tutorial on creating a plain CMake package that can be used in a c
 layout: post
 toc: true
 comments: true
-image: images/plain_cmake_preview.png
+# image: images/plain_cmake_preview.png
 hide: false
 search_exclude: true
 categories: [ROS, CMake]
