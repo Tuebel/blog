@@ -6,8 +6,8 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: 🤖 Tim Übelhör's blog 
-description: Hacks, tricks and awesomeness for robots and you. GoROS!
+title: 🤖 Tim Redick's blog 
+description: Tools, projects, robots, research, and things I find interesting
 github_username: Tuebel
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "blog"
@@ -44,18 +44,12 @@ minima:
 
 # Set this to true to get LaTeX math equation support
 use_math: true
-
 # Set this to true to display the summary of your blog post under your title on the Home page.
 show_description: true
-
 # Set this to true to display image previews on home page, if they exist
 show_image: true
-
 # Set this to true to display tags on each post
 show_tags: true
-
-# Add your Google Analytics ID here if you have one and want to use it
-google_analytics: 
 
 exclude:
   - docker-compose.yml
@@ -94,10 +88,10 @@ plugins:
 
 # See https://jekyllrb.com/docs/pagination/
 # For pagination to work, you cannot have index.md at the root of your repo, instead you must rename this file to index.html
-paginate: 15
+paginate: 5
 paginate_path: /page:num/
 
-remote_theme: jekyll/minima
+remote_theme: jekyll/hacker@v0.2.0
 
 titles_from_headings:
   enabled:     true
