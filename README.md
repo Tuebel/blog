@@ -1,6 +1,3 @@
-[//]: # (This template replaces README.md when someone creates a new repo with the fastpages template.)
-
-![](https://github.com/Tuebel/blog/workflows/CI/badge.svg) 
-![](https://github.com/Tuebel/blog/workflows/GH-Pages%20Status/badge.svg) 
+[![Build Jekyll site](https://github.com/Tuebel/blog/actions/workflows/ci.yaml/badge.svg)](https://github.com/Tuebel/blog/actions/workflows/ci.yaml)
 
 https://Tuebel.github.io/blog/
