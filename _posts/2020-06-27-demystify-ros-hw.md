@@ -1,7 +1,7 @@
 ---
 title: "[WIP] Demistify ROS Hardware & Control"
 description: "Accumulation of information and best practices for implementing your own ROS HardwareInterface for ros_control."
-layout: post
+layout: default
 toc: true
 comments: true
 image: images/plain_cmake_preview.png
