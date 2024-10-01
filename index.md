@@ -13,7 +13,7 @@ Welcome to my website / blog.
     {% capture markdown_content %}
 > **Contact**
 > 
-> [E-Mail](mailto:contact@redick.cc)\
+> [E-Mail](mailto:hello@redick.cc)\
 > [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
 > [X/@TimUebelhoer](https://x.com/TimUebelhoer), sporadic\
 > [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/tim-uebelhoer/), sporadic
