@@ -40,3 +40,5 @@ Currently, I am a postdoc at the same institute.
     </li>
     {% endfor %}
 </ul>
+
+<a rel="me" href="https://fosstodon.org/@tuebel">Mastodon</a>
