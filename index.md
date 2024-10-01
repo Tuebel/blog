@@ -15,8 +15,8 @@ Welcome to my website / blog.
 > 
 > [E-Mail](mailto:contact@redick.cc)\
 > [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
-> [X/@TimUebelhoer](https://x.com/TimUebelhoer)\
-> [in/tim-uebelhoer](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bwtogx6bxQ4W3gT%2BEGbdvXA%3D%3D)
+> [X/@TimUebelhoer](https://x.com/TimUebelhoer), sporadic\
+> [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/tim-uebelhoer/), sporadic
     {% endcapture %}
     {{ markdown_content | markdownify }}
   </div>
