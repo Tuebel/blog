@@ -10,12 +10,14 @@ Welcome to my website / blog.
     <img src="{{ site.baseurl }}/images/tim.jpg" alt="That's me smiling at you" width="200"/>
   </div>
   <div style="flex: 1;">
-    > **Contact**
-    > E-Mail: contact@redick.cc\
-    > Mastodon: [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
-    > X/Twitter (sporadically): [@TimUebelhoer](https://x.com/TimUebelhoer)\
-    > LinkedIn (sporadically): [in/tim-uebelhoer](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bwtogx6bxQ4W3gT%2BEGbdvXA%3D%3D)
-    More text...
+    {% capture markdown_content %}
+> **Contact**
+> E-Mail: contact@redick.cc\
+> Mastodon: [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
+> X/Twitter (sporadically): [@TimUebelhoer](https://x.com/TimUebelhoer)\
+> LinkedIn (sporadically): [in/tim-uebelhoer](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bwtogx6bxQ4W3gT%2BEGbdvXA%3D%3D)
+    {% endcapture %}
+    {{ markdown_content | markdownify }}
   </div>
 </div>
 
