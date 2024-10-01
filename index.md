@@ -12,6 +12,7 @@ Welcome to my website / blog.
   <div style="flex: 1;">
     {% capture markdown_content %}
 > **Contact**
+>
 > E-Mail: contact@redick.cc\
 > Mastodon: [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
 > X/Twitter (sporadically): [@TimUebelhoer](https://x.com/TimUebelhoer)\
