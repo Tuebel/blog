@@ -22,7 +22,7 @@ Welcome to my website / blog.
   </div>
 </div>
 
-Formerly known as Tim Übelhör (Uebelhoer), I got married to a Redick, I am a father of two, a coder, maker and robotics nerd.\
+Father of two, married a Redick (born as Übelhör), coder, maker, and robotics nerd.\
 Besides the nerdy technical hobbies, I like playing my guitar and piano, hiking, skiing and running.
 
 From 2013-2018, I studied mechanical (B.Sc.) and automation engineering (M.Sc.) at RWTH Aachen University.\
