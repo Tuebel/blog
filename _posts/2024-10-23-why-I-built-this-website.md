@@ -15,7 +15,8 @@ Write some Markdown, the GitHub pipelines were ready to go, and boom, there was 
 Compared to the quirky website builders on some shady website I used during school, I somehow owned the website. 
 And this feeling of wanting to own my little home in the interwebs was sparked again when I joined the Fediverse on Mastodon.
 My [fosstodon.org](https://fosstodon.org/@tuebel) instance is clearly biased towards a personal website, and the enthusiasm grabbed.
-Pointing people to my short [redick.cc] domain vs. sharing my LinkedIn or Facebook profile is just so much smoother.
+
+Pointing people to my short [redick.cc](https://redick.cc) domain vs. sharing my LinkedIn or Facebook profile is just so much smoother.
 To be honest, I also was a little jealous of my friend, who has a super short email address.
 So I went and bought my domain, which is cheaper for a whole year than almost any streaming service for a year.
 I cleaned up the deprecated fastpages template to a minimal Jekyll setup, which builds again, and found my little home in the WWW.
