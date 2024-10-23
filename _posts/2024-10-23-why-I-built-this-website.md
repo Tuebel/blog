@@ -4,7 +4,7 @@ description: "Motivation of my own place in a better web"
 layout: post
 comments: true
 hide: false
-categories: [Blog]
+tags: [blog]
 ---
 
 Back in the days, I worked through the [fast.ai](https://www.fast.ai/) resources to learn about neural networks for computer vision.
