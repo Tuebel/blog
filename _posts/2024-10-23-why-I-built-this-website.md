@@ -22,3 +22,4 @@ So I went and bought my domain, which is cheaper for a whole year than almost an
 I cleaned up the deprecated fastpages template to a minimal Jekyll setup, which builds again, and found my little home in the WWW.
 
 It feels like my own little garden, which I can harvest; people might judge, but I decide when and what to write.
+I can keep it forever, and might even move —it's just markdown.
