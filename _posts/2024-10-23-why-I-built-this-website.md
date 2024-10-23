@@ -20,3 +20,5 @@ Pointing people to my short [redick.cc](https://redick.cc) domain vs. sharing my
 To be honest, I also was a little jealous of my friend, who has a super short email address.
 So I went and bought my domain, which is cheaper for a whole year than almost any streaming service for a year.
 I cleaned up the deprecated fastpages template to a minimal Jekyll setup, which builds again, and found my little home in the WWW.
+
+It feels like my own little garden, which I can harvest; people might judge, but I decide when and what to write.
