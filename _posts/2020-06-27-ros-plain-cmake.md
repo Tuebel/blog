@@ -9,7 +9,6 @@ hide: false
 categories: [ROS, CMake]
 ---
 
-# ROS Plain CMake
 Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
 To enable reusing the code in a ROS-agnostic context, the logic and the ROS-bits should be placed in a different packages.
 However, this requires the programmer to manually add the packaging magic of `catkin_package()`.

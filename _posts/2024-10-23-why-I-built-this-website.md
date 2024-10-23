@@ -7,7 +7,6 @@ hide: false
 categories: [Blog]
 ---
 
-# Why I built this blog
 Back in the days, I worked through the [fast.ai](https://www.fast.ai/) resources to learn about neural networks for computer vision.
 [Jeremy Howard](https://jeremy.fast.ai/) stated somewhere that everyone should have a personal blog or website.
 They also offered a nice GitHub template called [fastpages](https://github.com/fastai/fastpages) which made it too easy.
