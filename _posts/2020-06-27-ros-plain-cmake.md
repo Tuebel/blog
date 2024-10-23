@@ -6,7 +6,6 @@ toc: true
 comments: true
 # image: images/plain_cmake_preview.png
 hide: false
-search_exclude: true
 categories: [ROS, CMake]
 ---
 
