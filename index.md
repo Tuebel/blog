@@ -16,7 +16,7 @@ Welcome to my website / blog.
 > [E-Mail](mailto:mail@redick.cc)\
 > [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
 > [X/@TimUebelhoer](https://x.com/TimUebelhoer), sporadic\
-> [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/tim-uebelhoer/), sporadic
+> [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic
     {% endcapture %}
     {{ markdown_content | markdownify }}
   </div>
