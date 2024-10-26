@@ -5,22 +5,14 @@ title: Index
 Welcome to my website / blog.
 
 # About Me
-<div style="display: flex; width: 100%;">
-  <div style="flex: 0 0 150px; margin-right: 20px;">
-    <img src="{{ site.baseurl }}/images/tim.jpg" alt="That's me smiling" width="200"/>
-  </div>
-  <div style="flex: 1;">
-    {% capture markdown_content %}
 > **Contact**
 > 
 > [E-Mail](mailto:mail@redick.cc)\
 > [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
+> [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic\
 > [X/@TimUebelhoer](https://x.com/TimUebelhoer), sporadic\
-> [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic
-    {% endcapture %}
-    {{ markdown_content | markdownify }}
-  </div>
-</div>
+
+<img src="{{ site.baseurl }}/images/tim.jpg" alt="That's me smiling" width="200"/>
 
 Father of two, married a Redick (born as Übelhör), coder, maker, and robotics nerd.\
 Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.
