@@ -7,7 +7,7 @@ hide: false
 tags: [blog]
 ---
 
-Windows turns the default Ctrl+Alt commands into AltGr which prevents Zen keyboard shortcuts for split views.
+Windows turns the default Ctrl+Alt commands into AltGr which prevents Zen keyboard shortcuts for split views. Here is how to work around it.
 
 The easiest solution is to reassign the keyboard shortcuts in Zen.
 Go to `settings keyboard shortcuts` and click on shortcuts which use `Ctrl + Alt`.
