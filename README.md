@@ -2,4 +2,4 @@
 
 # Website
 - My domain hosted on cloudflare: https://www.redick.cc
-- Fallback on gitub pages: https://Tuebel.github.io/blog/
+- Fallback on github pages: https://Tuebel.github.io/blog/
