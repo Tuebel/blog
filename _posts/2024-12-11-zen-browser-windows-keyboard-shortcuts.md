@@ -12,7 +12,7 @@ Windows turns the default Ctrl+Alt commands into AltGr which prevents Zen keyboa
 The easiest solution is to reassign the keyboard shortcuts in Zen.
 Go to `settings keyboard shortcuts` and click on shortcuts which use `Ctrl + Alt`.
 Retype the same shortcut, which will be replaced by the custom character depending on your keyboard layout.
-Confirm the change with ` Esc`.
+Confirm the change with `Esc`.
 For example, `Ctrl + Alt + q` is turned into `ì` using the [EurKey](https://eurkey.steffen.bruentjen.eu/) layout.
 By the way, I very much recommend EurKey to European programmers who like using custom keyboards, which often use an ANSI keyboard.
 
