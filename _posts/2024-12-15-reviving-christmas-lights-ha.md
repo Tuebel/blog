@@ -11,7 +11,7 @@ A few years ago, my wife and I bought our first Christmas tree in a local hardwa
 Of course, we needed some lights to go along it.
 There were those Bluetooth lights which could be controlled via a "Lights" App which gave me those Android Gingerbread vibes.
 A quick google in the store and I found that someone reverse engineered the Bluetooth low energy (BLE) protocol for these "[clusterlights](https://github.com/BasVerkooijen/cluster-lights-home-assistant/tree/master)" as a home assistant integration.
-This integration stopped working last year and I had to use the old buggy app...\
+This integration stopped working last year and I had to use the old buggy app...
 
 On my quest to revive the integration, I started off fixing the dependencies, upgrading to bluepy3, etc.
 However, the home assistant OS heavily relies on Docker containerization, which made it difficult to install system dependencies in addition to the Python requirements.
