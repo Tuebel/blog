@@ -20,6 +20,11 @@ BLE only works for approximately ten meters, and that is without any obstacles i
 So I hacked up an ESPHome yaml which allows me to send the commands to turn on and off the lights, change the effects, and brightness.
 
 You can find my implementation on [github](https://github.com/Tuebel/Clusterlights-ESPHome).
+To be honest, it is quite hacky. 
+For example, I have to send effects twice because the lights lag one command when using the lambdas in ESPHome.
+Moreover, it would be nicer to implement a custom light component in C++.
+But this learning curve would be more than I can do on a weekend with two toddlers.
+So I give it the certificate **good enough** and let it be a challenge for another year.
 
 Merry Christmas!
 
