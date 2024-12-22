@@ -12,7 +12,6 @@ Welcome to my website / blog.
 > [E-Mail](mailto:mail@redick.cc)\
 > [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
 > [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic\
-> [X/@TimUebelhoer](https://x.com/TimUebelhoer), sporadic
 
 Father of two, married a Redick (born as Übelhör), coder, maker, and robotics nerd.\
 Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.
