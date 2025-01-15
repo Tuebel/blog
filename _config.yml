@@ -83,3 +83,4 @@ og_image:
       - "#4285F4"
       - "#5E97F2"
       - "#7AA9F5"
+  verbose: true
