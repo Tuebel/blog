@@ -14,15 +14,16 @@ gem "hacker"
 # gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem "jekyll-feed"
-  gem 'jekyll-octicons'
-  gem 'jekyll-remote-theme'
-  gem "jekyll-twitter-plugin"
-  gem 'jekyll-relative-links'
-  gem 'jekyll-seo-tag'
-  gem 'jekyll-toc'
   gem 'jekyll-gist'
+  gem 'jekyll-octicons'
+  gem 'jekyll-og-image'
+  gem 'jekyll-relative-links'
+  gem 'jekyll-remote-theme'
+  gem 'jekyll-seo-tag'
   gem 'jekyll-sitemap'
+  gem 'jekyll-toc'
+  gem "jekyll-feed"
+  gem "jekyll-twitter-plugin"
 end
 
 gem "kramdown-math-katex"

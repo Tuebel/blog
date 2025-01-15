@@ -7,6 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: 🤖 Tim Redick 
+tagline: Homelab, making, coding, robotics
 description: Homelab, making, coding, robotics
 author: Tim Redick
 
@@ -45,12 +46,13 @@ plugins:
   - jekyll-feed
   - jekyll-gist
   - jekyll-octicons
+  - jekyll-og-image
+  - jekyll-relative-links
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
   - jekyll-toc
   - jekyll-twitter-plugin
-  - jekyll-relative-links
-  - jekyll-seo-tag
-  - jekyll-remote-theme
-  - jekyll-sitemap
   - jemoji
 
 remote_theme: pages-themes/hacker@v0.2.0
@@ -68,3 +70,16 @@ kramdown:
   auto_ids: true
   hard_wrap: false
   syntax_highlighter: rouge
+
+# preview images
+og_image:
+  output_dir: "assets/images/og"
+  image: "images/tim.jpg"
+  domain: "redick.cc"
+  border_bottom:
+    width: 20
+    fill:
+      - "#2F5EAA"
+      - "#4285F4"
+      - "#5E97F2"
+      - "#7AA9F5"
