@@ -11,14 +11,14 @@ Welcome to my website / blog.
 > 
 > [E-Mail](mailto:mail@redick.cc)\
 > [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
-> [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic\
+> [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic
 
 Father of two, married a Redick (born as Übelhör), coder, maker, and robotics nerd.\
 Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.
 
-From 2013-2018, I studied mechanical (B.Sc.) and automation engineering (M.Sc.) at RWTH Aachen University.\
-From 2018-2024, I worked on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (Germand Ph.D. in engineering) at the Institute of Automatic Control (RWTH Aachen University).\
-Currently, I am a postdoc at the same institute in the position of the "group manager navigation".
+* Currently, I am a postdoc at the same institute in the position of the "group manager navigation".
+* From 2018-2024, I worked on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (Germand Ph.D. in engineering) at the Institute of Automatic Control (RWTH Aachen University).
+* From 2013-2018, I studied mechanical (B.Sc.) and automation engineering (M.Sc.) at RWTH Aachen University.
 
 # Latest Posts
 
@@ -31,5 +31,3 @@ Currently, I am a postdoc at the same institute in the position of the "group ma
     </li>
     {% endfor %}
 </ul>
-
-<a rel="me" href="https://fosstodon.org/@tuebel">Mastodon</a>
