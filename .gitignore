@@ -1,14 +1,15 @@
-*.swp
-~*
-*~
+__pycache__
+_notebooks/.ipynb_checkpoints
 _site
-.sass-cache
 .jekyll-cache
 .jekyll-metadata
-vendor
-_notebooks/.ipynb_checkpoints
-.vscode
-# Local Netlify folder
 .netlify
+.sass-cache
 .tweet-cache
-__pycache__
+.vscode
+*.swp
+*~
+~*
+assets/images/og
+Gemfile.lock
+vendor

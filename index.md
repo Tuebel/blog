@@ -5,7 +5,7 @@ title: Index
 Welcome to my website / blog.
 
 # About Me
-> <img src="{{ site.baseurl }}/images/tim.jpg" alt="That's me smiling" width="150"/>
+> <img src="{{ site.baseurl }}/assets/images/tim.jpg" alt="That's me smiling" width="150"/>
 >
 > **Contact**
 > 

@@ -46,7 +46,6 @@ plugins:
   - jekyll-feed
   - jekyll-gist
   - jekyll-octicons
-  - jekyll-og-image
   - jekyll-relative-links
   - jekyll-remote-theme
   - jekyll-seo-tag
@@ -71,16 +70,11 @@ kramdown:
   hard_wrap: false
   syntax_highlighter: rouge
 
-# preview images
-og_image:
-  output_dir: "assets/images/og"
-  image: "images/tim.jpg"
-  domain: "redick.cc"
-  border_bottom:
-    width: 20
-    fill:
-      - "#2F5EAA"
-      - "#4285F4"
-      - "#5E97F2"
-      - "#7AA9F5"
-  verbose: true
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: assets/images/page_icon.png
+      width: 100
+      height: 100
+      alt: Colorful Robot Page Icon 

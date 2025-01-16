@@ -7,7 +7,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.3.4"
+gem "jekyll", "~> 3.3"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "hacker"
 # To upgrade, run `bundle update github-pages`.
@@ -16,7 +16,6 @@ gem "hacker"
 group :jekyll_plugins do
   gem 'jekyll-gist'
   gem 'jekyll-octicons'
-  gem 'jekyll-og-image'
   gem 'jekyll-relative-links'
   gem 'jekyll-remote-theme'
   gem 'jekyll-seo-tag'
@@ -27,5 +26,6 @@ group :jekyll_plugins do
 end
 
 gem "kramdown-math-katex"
+gem "kramdown-parser-gfm"
 gem "jemoji"
 
