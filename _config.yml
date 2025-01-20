@@ -17,7 +17,7 @@ github:
 
 # OPTIONAL: override baseurl and url if using a custom domain
 # Note: leave out the trailing / from this value. 
-url: "https://redick.cc" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.redick.cc" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Set this to true to get LaTeX math equation support
 use_math: true
