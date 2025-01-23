@@ -4,6 +4,9 @@ title: Index
 ---
 Welcome to my website / blog.
 
+# Pages
+[My Story (WIP)](/my_story) | [Curriculum Vitae (TODO)](/cv) | [Projects (TODO)](/projects) | [Publications (TODO)](/publications)
+
 # About Me
 > <img src="{{ site.baseurl }}/assets/images/tim.jpg" alt="That's me smiling" width="150"/>
 >
@@ -14,7 +17,7 @@ Welcome to my website / blog.
 > [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic
 
 Father of two, married a Redick (born as Übelhör), coder, maker, and robotics nerd.\
-Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.
+Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.\
 
 * Currently, I am a postdoc at the same institute in the position of the "group manager navigation".
 * From 2018-2024, I worked on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (Germand Ph.D. in engineering) at the Institute of Automatic Control (RWTH Aachen University).
