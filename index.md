@@ -15,7 +15,7 @@ Welcome to my website / blog.
 > [fosstodon/@tuebel](https://fosstodon.org/@tuebel)\
 > [LinkedIn/tim-uebelhoer](https://www.linkedin.com/in/timredick/), sporadic
 
-Father of two, married a Redick (born as Übelhör), coder, maker, and robotics nerd.\
+Father of two, married a Redick (born Übelhör), coder, maker, and robotics nerd.\
 Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.
 
 * Currently, I am a postdoc at the same institute in the position of the "group manager navigation".
