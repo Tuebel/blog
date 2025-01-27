@@ -19,7 +19,7 @@ Father of two, married a Redick (born Übelhör), coder, maker, and robotics ner
 Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.
 
 * Currently, I am a postdoc at the same institute in the position of the "group manager navigation".
-* From 2018-2024, I worked on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (Germand Ph.D. in engineering) at the Institute of Automatic Control (RWTH Aachen University).
+* From 2018-2024, I worked on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (German Ph.D. in engineering) at the Institute of Automatic Control (RWTH Aachen University).
 * From 2013-2018, I studied mechanical (B.Sc.) and automation engineering (M.Sc.) at RWTH Aachen University.
 
 ## Posts
