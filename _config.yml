@@ -59,7 +59,7 @@ plugins:
 theme: minima
 header_pages:
   - my_story.md
-  - cv.md
+
 minima:
   # light or dark chosen by browser
   skin: auto

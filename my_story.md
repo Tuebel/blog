@@ -1,5 +1,5 @@
 ---
-title: "My Story (WIP)"
+title: "My Story [WIP]"
 description: "How I got here"
 layout: post
 toc: true
