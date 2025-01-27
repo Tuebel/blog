@@ -13,15 +13,6 @@ author:
   name: Dr.-Ing. Tim Redick
   email: "mail@redick.cc"
 
-minima:
-  skin: auto
-  social_links:
-    - { platform: github,  user_url: "https://github.com/Tuebel/blog" }
-    - { platform: mastodon, user_url: "https://fosstodon.org/@tuebel" }
-    - { platform: linkedin, user_url: "https://www.linkedin.com/in/timredick/" }
-    - { platform: bluesky, user_url: "https://bsky.app/profile/redick.cc" }
-     
-
 # you can comment the below line out if your repo name is not different than your baseurl
 github:
   repository_url: "https://github.com/Tuebel/blog"
@@ -57,6 +48,7 @@ plugins:
   - jekyll-feed
   - jekyll-gist
   - jekyll-octicons
+  - jekyll-paginate
   - jekyll-relative-links
   - jekyll-remote-theme
   - jekyll-seo-tag
@@ -69,6 +61,17 @@ theme: minima
 header_pages:
   - my_story.md
   - cv.md
+minima:
+  # light or dark chosen by browser
+  skin: auto
+  date_format: "%d. %B %Y"
+  social_links:
+    - { platform: github,  user_url: "https://github.com/Tuebel/blog" }
+    - { platform: mastodon, user_url: "https://fosstodon.org/@tuebel" }
+    - { platform: linkedin, user_url: "https://www.linkedin.com/in/timredick/" }
+    - { platform: bluesky, user_url: "https://bsky.app/profile/redick.cc" }
+# shows first paragraph of post on home page
+show_excerpts: true
 
 titles_from_headings:
   enabled:     true

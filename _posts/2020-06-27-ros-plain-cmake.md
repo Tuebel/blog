@@ -14,7 +14,7 @@ To enable reusing the code in a ROS-agnostic context, the logic and the ROS-bits
 However, this requires the programmer to manually add the packaging magic of `catkin_package()`.
 This blog post provides insight on what is required to make a CMake project 'find_packagable' [^CmakePackage].
 
-# Example repository
+## Example repository
 A minimal working example of a ROS workspace can be found [here](https://github.com/Tuebel/ros_plain_cmake).
 This workspace contains three packages:
 1. [plain_cmake](https://github.com/Tuebel/ros_plain_cmake/tree/master/src/plain_cmake): Minimal example of a plain CMake package for ROS.
@@ -23,7 +23,7 @@ This workspace contains three packages:
 
 This blog post will fokus on the plain_cmake package but will also give short examples of reusing the package.
 
-# package.xml
+## package.xml
 Even though a *package.xml* is not required for the CMake functionalities, it is still required in the context of ROS.
 This file gets parsed by the build tool, for example `catkin build` to determine the dependencies and the build order [^REP140].
 To mark our project as plain CMake we add the following tags to our *package.xml*:
@@ -43,8 +43,8 @@ For example for linear algebra, matrix and vector operations the package could d
 <depend>eigen</depend>
 ```
 
-# CMakeLists.txt
-## Includes and Settings
+## CMakeLists.txt
+### Includes and Settings
 First, we include some CMake helpers.
 `GNUInstallDirs` provides variables for default installation directories like `${CMAKE_INSTALL_LIBDIR}` while the `CMakePackageConfigHelpers` provides functions for the automatic generation of the CMake configuration files.
 
@@ -75,7 +75,7 @@ In this example, the Eigen3 library is required.
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 ```
 
-## Defining targets
+### Defining targets
 This step is very similar to defining targets in a catkin package.
 In this example, we define a library named after project which consists of a single source file.
 It is good practice to include headers and sources for each target instead of using the global `include_directories()` [^DoCmakeRight].
@@ -101,7 +101,7 @@ add_executable(example_app src/example_app.cpp)
 target_link_libraries(example_app ${CMAKE_PROJECT_NAME}_lib)
 ```
 
-## Installing the targets
+### Installing the targets
 The obvious reason for using `install(TARGETS)` is to copy the libraries, binaries and headers to a system directory, where they can be found by other projects [^ModernCmakeInstall].
 The not so obvious reason is that we can use the `EXPORT` command to associate the installation targets with `plain_cmakeTargets`, which we will use in the next section.
 The `ARCHIVE`, `LIBRARY` and `RUNTIME` `DESTINATION` commands define where the files will be installed.
@@ -128,7 +128,7 @@ install(DIRECTORY include/
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 ```
 
-## Export Targets
+### Export Targets
 In the last section we associated the install targets with `plain_cmakeTargets`.
 Now, we can use this association to generate the *plain_cmakeTargets.cmake* which will allow other projects to import our targets.
 The `NAMESPACE` is be prepended to the target names, so we can link to this library via `plain_cmake::plain_cmake_lib`.
@@ -150,7 +150,7 @@ install(EXPORT ${CMAKE_PROJECT_NAME}Targets
   DESTINATION ${ConfigPackageLocation})
 ```
 
-## Package Configuration Generation 
+### Package Configuration Generation 
 This section describes the steps required to enable the `find_package` mechanism.
 For our plain_cmake project two files are required to turn it into a CMake package:
 - *plain_cmakeConfigVersion.cmake*
@@ -196,7 +196,7 @@ install(FILES
   DESTINATION ${ConfigPackageLocation})
 ```
 
-## Config.cmake.in
+### Config.cmake.in
 The first line will be automatically expanded by the config helpers to make the file relocatable.
 
 ```cmake
@@ -249,11 +249,11 @@ Finally it is recommended to call the following line to confirm that all require
 check_required_components(plain_cmake)
 ```
 
-# Usage
+## Usage
 Now that we have completed our plain CMake package, it is time to use it in another project.
 We implemented the package so that it can be used in the build tree of a catkin workspace or from a system installation.
 
-## Catkin Workspace
+### Catkin Workspace
 Using the `plain_cmake` package is pretty straight forward, almost as using any other catkin package.
 Catkin uses the *package.xml* to determine the build order [^REP140].
 Thus, we add the following line to the *package.xml* of the consumer package:
@@ -295,7 +295,7 @@ As the plain CMake package makes it a mixed workspace, we cannot use `catkin_mak
 Instead, `catkin_make_isolated`[^REP134] or the catkin_tools have to be used.
 An example can be found in [catkin_pkg](https://github.com/Tuebel/ros_plain_cmake/tree/master/src/catkin_pkg).
 
-## CMake System Installation
+### CMake System Installation
 Since the `plain_cmake` package's only ROS bit is the *package.xml*, it can be installed and used like any other system dependency.
 Navigate to the *plain_cmake* directory and create a *build* directory to keep the workspace clean.
 Inside this directory we can call the typical sequence of commands to build and install a CMake package.
@@ -321,12 +321,12 @@ target_link_libraries(app plain_cmake::plain_cmake_lib)
 A full example can be found in [consumer_cmake](https://github.com/Tuebel/ros_plain_cmake/tree/master/src/consumer_cmake).
 Note, that if you compile the whole repository with catkin, the consumer_cmake project is not compiled as it does not include a *package.xml*.
 
-# Conclusion
+## Conclusion
 We have implemented a plain CMake package that can be used in a catkin workspace and in a ROS-agnostic setting.
 This portability is also useful, if you intend to transition to ROS2 in the near future, as colcon supports plain CMake packages, too.
 If you have any questions or recommendations, feel free to comment or open a pull-request 🤖.
 
-## References and Useful Resources
+### References and Useful Resources
 [^REP134]: https://www.ros.org/reps/rep-0134.html
 [^REP140]: https://www.ros.org/reps/rep-0140.html
 [^ModernCmakeInstall]: https://cliutils.gitlab.io/modern-cmake/chapters/install/installing.html

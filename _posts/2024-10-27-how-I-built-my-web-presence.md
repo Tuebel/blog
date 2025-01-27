@@ -7,7 +7,6 @@ hide: false
 categories: [Blog]
 ---
 
-# Domain
 At the core of my independent web presence is the domain name **redick.cc**.
 As long as I keep paying for the domain, I can move any service to another provider while the user-facing address doesn't change.
 When researching for a good domain name registrar, *Namecheap* and *Cloudflare* often came up in forums.
@@ -25,7 +24,7 @@ Yes, I develop a lot of stuff, so *.dev* sounded nice.
 But *redick.cc* is a bit easier and shorter to say to someone on the phone (at least in Germany).
 Moreover, I knew *arduino.cc* and *dict.cc* so it did not seem too exotic.
 
-# Website
+## Website
 As written in [why I built this website](/_posts/2024-10-23-why-I-built-this-website.md), I want to own my posts.
 Moreover, I like the simplicity and portability of Markdown.
 Therefore, I use Jekyll as a static site generator, as I currently do not plan to include any dynamic interactions.
@@ -37,7 +36,7 @@ When I bought the *redick.cc* domain, it was fairly simple to use this instead o
 However, I noticed that Cloudflare also allows hosting a Jekyll site.
 A wonderful feature is the automatic mail obfuscation on the hosted page, so web crawlers are unable to extract my mail from the `mailto:` in my contact section.
 
-# Mail
+## Mail
 First, I used the email forwarding feature of Cloudflare to pass all mails to my personal Gmail account.
 But getting an answer from an entirely different mail address is probably confusing to most people.
 I would have loved to use a privacy-focused mail provider like *Proton*.

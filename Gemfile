@@ -14,6 +14,7 @@ gem 'hacker'
 # gem 'github-pages', group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
+  gem 'jekyll-feed'
   gem 'jekyll-gist'
   gem 'jekyll-octicons'
   gem 'jekyll-relative-links'
@@ -21,7 +22,6 @@ group :jekyll_plugins do
   gem 'jekyll-seo-tag'
   gem 'jekyll-sitemap'
   gem 'jekyll-toc'
-  gem 'jekyll-feed'
   gem 'jekyll-twitter-plugin'
   gem 'minima'
 end

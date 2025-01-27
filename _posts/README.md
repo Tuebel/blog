@@ -1,4 +1,4 @@
-# Auto-convert markdown files To Posts
+## Auto-convert markdown files To Posts
 You must save your page with the naming convention `YYYY-MM-DD-*.md`.  Examples of valid filenames are:
 
 ```shell
@@ -6,6 +6,6 @@ You must save your page with the naming convention `YYYY-MM-DD-*.md`.  Examples 
 2012-09-12-how-to-write-a-blog.md
 ```
 
-# Resources
+## Resources
 - [Jekyll posts](https://jekyllrb.com/docs/posts/)
 - [Example markdown post](https://github.com/fastai/fastpages/blob/master/_posts/2020-01-14-test-markdown-post.md)
