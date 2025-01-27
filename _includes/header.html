@@ -5,7 +5,7 @@
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
     <a class="site-title" rel="author" href="{{ " " | relative_url }}">
-      <img src="favicon.svg" float="left" width="32px" height="32px" />
+      <img src="/favicon.svg" float="left" width="32px" height="32px" />
       {{ site.title | escape }}
     </a>
 
