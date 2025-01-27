@@ -1,5 +1,5 @@
 ---
-title: "My Story: How I got to here"
+title: "My Story (WIP)"
 description: "How I got here"
 layout: post
 toc: true
@@ -88,3 +88,4 @@ So I wrote Java code with factory patterns and other patterns to make Java beara
 Programming math, specifically linear algebra, in Java is a pain, but I successfully implemented a controller for hand guidance and compliant replaying of recorded movements.
 
 # PhD at the Institute of Automatic Control (2018-2025)
+

@@ -1,11 +1,11 @@
 ---
-layout: default
-title: Index
+title: Home
+layout: home
 ---
 Welcome to my website / blog.
 
 # Pages
-[My Story (WIP)](/my_story) | [Curriculum Vitae (TODO)](/cv) | [Projects (TODO)](/projects) | [Publications (TODO)](/publications)
+[My Story (WIP)](/my_story) | [Online CV (TODO)](/cv) | [Projects (TODO)](/projects) | [Publications (TODO)](/publications)
 
 # About Me
 > <img src="{{ site.baseurl }}/assets/images/tim.jpg" alt="That's me smiling" width="150"/>

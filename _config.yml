@@ -6,10 +6,21 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: Tim Redick | 🤖 
+title: Dr.-Ing. Tim Redick | 🤖 
 tagline: Homelab, making, coding, robotics
 description: Homelab, making, coding, robotics
-author: Tim Redick
+author:
+  name: Dr.-Ing. Tim Redick
+  email: "mail@redick.cc"
+
+minima:
+  skin: auto
+  social_links:
+    - { platform: github,  user_url: "https://github.com/Tuebel/blog" }
+    - { platform: mastodon, user_url: "https://fosstodon.org/@tuebel" }
+    - { platform: linkedin, user_url: "https://www.linkedin.com/in/timredick/" }
+    - { platform: bluesky, user_url: "https://bsky.app/profile/redick.cc" }
+     
 
 # you can comment the below line out if your repo name is not different than your baseurl
 github:
@@ -54,7 +65,10 @@ plugins:
   - jekyll-twitter-plugin
   - jemoji
 
-remote_theme: pages-themes/hacker@v0.2.0
+theme: minima
+header_pages:
+  - my_story.md
+  - cv.md
 
 titles_from_headings:
   enabled:     true

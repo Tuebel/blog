@@ -1,5 +1,5 @@
 ---
-title: "Curriculum Vitae"
+title: "Curriculum Vitae (TODO)"
 description: "Professional Experience, Education, Skills, Profile"
 layout: post
 toc: true
