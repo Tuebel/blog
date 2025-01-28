@@ -18,18 +18,8 @@ Welcome to my website / blog.
 Father of two, married a Redick (born Übelhör), coder, maker, and robotics nerd.\
 Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking, skiing, and running.
 
-* Currently, I am a postdoc at the same institute in the position of the "group manager navigation".
-* From 2018-2024, I worked on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (German Ph.D. in engineering) at the Institute of Automatic Control (RWTH Aachen University).
-* From 2013-2018, I studied mechanical (B.Sc.) and automation engineering (M.Sc.) at RWTH Aachen University.
+* Currently, I am a postdoc at the Institute of Automatic Control, RWTH Aachen University, in the position of the "group manager navigation".
+* From 2018-2024, I worked there on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (German Ph.D. in engineering)
+* You can find more information in my [online CV](https://cv.redick.cc) or the [informal long CV](/2025/01/27/my-story.html).
 
 ## Posts
-
-<!-- <ul>
-    {% for post in site.posts %}
-    <li>
-        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-        <p>{{ post.date | date: "%B %d, %Y" }}</p>
-        <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
-    </li>
-    {% endfor %}
-</ul> -->
