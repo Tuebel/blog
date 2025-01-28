@@ -20,6 +20,6 @@ Besides the nerdy hobbies, I like playing music on the guitar and piano, hiking,
 
 * Currently, I am a postdoc at the Institute of Automatic Control, RWTH Aachen University, in the position of the "group manager navigation".
 * From 2018-2024, I worked there on my [thesis](https://doi.org/10.18154/RWTH-2024-04533) for my Dr.-Ing. (German Ph.D. in engineering)
-* You can find more information in my [online CV](https://cv.redick.cc) or the [informal long CV](/2025/01/27/my-story.html).
+* You can find more information in my [online CV](https://cv.redick.cc) or [my story](/2025/01/27/my-story.html) in prose.
 
 ## Posts
