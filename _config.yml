@@ -92,4 +92,4 @@ defaults:
       image: assets/images/default_og.png
       width: 1200
       height: 811
-      alt: Colorful robot as repeated wallpaper
+      alt: Colorful robot icon in front of a spine phantom with MCUs and IMUs attached to it and an robot arm pushing a vertebra

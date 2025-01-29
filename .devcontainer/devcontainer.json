@@ -4,18 +4,20 @@
 	"name": "Jekyll",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/jekyll:3.3-bullseye",
-	// "build": {
-	// 	"dockerfile": "Dockerfile",
-	// 	"context": ".."
-	// },
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "sudo apt update && sudo apt install -y libvips"
-	// Configure tool-specific properties.
-	// "customizations": {},
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"runArgs": [
+		"--userns=keep-id"
+	],
+	"containerUser": "vscode",
+	// "updateRemoteUserUID": true,
+	"containerEnv": {
+		"HOME": "/home/vscode"
+	},
+	// install extensions in the container
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ltex-plus.vscode-ltex-plus"
+			]
+		}
+	}
 }
