@@ -6,7 +6,7 @@ toc: true
 comments: true
 image: assets/images/plain_cmake_preview.png
 hide: false
-tags: [ROS, CMake]
+tags: [ROS, CMake, wiki]
 ---
 
 Even though it is considered best practice to separate the ROS code from the logic, they are commonly placed in the same ROS package.
