@@ -43,7 +43,7 @@ __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia DISPLAY=:0 vglrun $
 # __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia DISPLAY=:1 vglrun $JULIA "$@"
 ```
 
-It is crucial that the full path to the Julia executable is provided.
+It is crucial that the **full path to the Julia executable** is provided.
 This script solves it by being located in the same directory as the Julia executable.
 You might as well hard-code the absolute path to the executable.
 
