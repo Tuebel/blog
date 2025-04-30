@@ -12,7 +12,7 @@ Posts on enabling CUDA and OpenGL in the same container are less frequent.
 
 
 # Code and general notes
-Below, you can find a docker-compose setup that currently works, which I use to make the [code from my Ph.D.](https://github.com/rwth-irt/BayesianPoseEstimation.jl/tree/main/.devcontainer) thesis more reproducible.
+Below, you can find a docker-compose setup that currently works, which I use to make the [code from my Ph.D.](https://github.com/Tuebel/BayesianPoseEstimation.jl/tree/main/.devcontainer) thesis more reproducible.
 It is intended for devcontainers, so code is mounted into the container workspace.
 
 ```yml

@@ -59,7 +59,7 @@ Make sure to install a recent driver for your GPU.
 On recent Ubuntu distros (>22.04) it should work out of the box; older distros need a PPA (e.g. kisak-mesa) to install a recent mesa version.
 
 > However, using the Direct3D12 backend for OpenGL only enables OpenGL 4.2.
-> My [SciGL.jl](https://github.com/rwth-irt/SciGL.jl) package requires OpenGL 4.5 for persistent texture mapping and `glGetTextureSubImage`.
+> My [SciGL.jl](https://github.com/Tuebel/SciGL.jl) package requires OpenGL 4.5 for persistent texture mapping and `glGetTextureSubImage`.
 > Using the kisak-mesa PPA, I was able to get OpenGL 4.6 with LLVMpipe but no hardware acceleration. 
 
 > OpenGL-**CUDA interop** is [not supported on WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html#features-not-yet-supported)!
