@@ -35,6 +35,7 @@ GitHub hosts the code of the website, and initially also was responsible for the
 When I bought the *redick.cc* domain, it was fairly simple to use this instead of the *tuebel.github.io* site.
 However, I noticed that Cloudflare also allows hosting a Jekyll site.
 A wonderful feature is the automatic mail obfuscation on the hosted page, so web crawlers are unable to extract my mail from the `mailto:` in my contact section.
+One note when building Jekyll sites: replace the default `build command` with `bundle exec jekyll build` in the build settings.
 
 ## Mail
 First, I used the email forwarding feature of Cloudflare to pass all mails to my personal Gmail account.
