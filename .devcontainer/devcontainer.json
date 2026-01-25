@@ -1,13 +1,30 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/jekyll
 {
-	"name": "Jekyll",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/jekyll:3.3-bookworm",
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sh /usr/local/post-create.sh",
-	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
+	"name": "Jekyll website",
+	// Use the Dockerfile in this folder to build every time
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {}
+	},
+	// If this is prebuilt and stored in an internal registry, use this instead
+	// "image": "registry.company.us/jekyll-website:latest",
+	//
+	// Forward the website port
+	"forwardPorts": [
+		4000
+	],
+	"portsAttributes": {
+		"4000": {
+			"label": "Website"
+		}
+	},
+	// Use the "nonroot" user, default for Chainguard images
+	"remoteUser": "nonroot",
+	// After it's created, run bundle to install dependencies
+	"postCreateCommand": {
+		"bundle": "bundle config set --local path 'vendor/bundle' && bundle install --retry 5 --jobs 20"
+	},
+	// After it's launched and VS Code is attached, run Jekyll to serve the website
+	"postAttachCommand": "bundle exec jekyll serve --host 0.0.0.0",
 	// install extensions in the container
 	"customizations": {
 		"vscode": {
