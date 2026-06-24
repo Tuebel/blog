@@ -1,0 +1,11 @@
+services:
+  jekyll:
+    container_name: blog
+    image: docker.io/jekyll/builder:4.0
+    command: jekyll serve --watch --force_polling --verbose --livereload --host 0.0.0.0
+    volumes:
+      - .:/srv/jekyll:Z
+    environment:
+      JEKYLL_VERSION: 3.8
+    ports:
+      - 4001:4000
