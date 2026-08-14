@@ -1,7 +1,7 @@
 services:
   jekyll:
     container_name: blog
-    image: docker.io/jekyll/builder:4.0
+    build: .
     command: jekyll serve --watch --force_polling --verbose --livereload --host 0.0.0.0
     volumes:
       - .:/srv/jekyll:Z
