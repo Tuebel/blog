@@ -76,7 +76,7 @@ GEM
     jekyll-octicons (19.42.0)
       jekyll (>= 3.6, < 5.0)
       octicons (= 19.42.0)
-    jekyll-relative-links (0.9.1)
+    jekyll-relative-links (0.9.2)
       jekyll (>= 3.3, < 5.0)
     jekyll-remote-theme (0.6.3)
       addressable (~> 2.0)
